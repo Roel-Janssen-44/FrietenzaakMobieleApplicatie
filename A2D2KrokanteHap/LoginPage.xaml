@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="A2D2KrokanteHap.LoginPage"
+             Title="LoginPage">
+    <VerticalStackLayout
+        Padding="30,0"
+        Spacing="25">
+        <Image
+            Source="logo.png"
+            HeightRequest="185"
+            Aspect="AspectFit"
+            SemanticProperties.Description="Logo FridgeWise" />
+
+        <Label
+            Text="Login"
+            Style="{StaticResource Headline}"
+            SemanticProperties.HeadingLevel="Level1" />
+
+        <Entry x:Name="username"
+            Placeholder="Gebruikersnaam"
+            TextChanged="OnEntryTextChanged"
+            Completed="OnEntryCompleted" />
+
+        <Entry x:Name="password"
+            Placeholder="Wachtwoord"
+            TextChanged="OnEntryTextChanged"
+            Completed="OnEntryCompleted" />
+
+        <Button
+            x:Name="LoginBtn"
+            Text="Login" 
+            Clicked="OnLoginClick"
+            HorizontalOptions="Fill" />
+    </VerticalStackLayout>
+</ContentPage>

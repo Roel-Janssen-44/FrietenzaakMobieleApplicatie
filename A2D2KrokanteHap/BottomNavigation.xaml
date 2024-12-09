@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Shell
+    x:Class="A2D2KrokanteHap.BottomNavigation"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:A2D2KrokanteHap"
+    
+    >
+
+    <TabBar >
+        <Tab Icon="note.png">
+            <ShellContent ContentTemplate="{DataTemplate local:OrdersPage}" />
+        </Tab>
+        <Tab Icon="cart.png">
+            <ShellContent ContentTemplate="{DataTemplate local:CreateOrderPage}" />
+        </Tab>
+        <Tab Icon="map.png">
+            <ShellContent ContentTemplate="{DataTemplate local:MapsPage}" />
+        </Tab>
+    </TabBar>
+
+</Shell>

@@ -17,6 +17,7 @@ namespace A2D2KrokanteHap
 
 #if DEBUG
     		builder.Logging.AddDebug();
+
 #endif
 
             return builder.Build();
