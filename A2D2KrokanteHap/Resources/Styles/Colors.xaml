@@ -9,5 +9,6 @@
     <Color x:Key="Tertiary">#2A2121</Color>
     <Color x:Key="White">#fff</Color>
     <Color x:Key="Black">#000</Color>
+    
 
 </ResourceDictionary>

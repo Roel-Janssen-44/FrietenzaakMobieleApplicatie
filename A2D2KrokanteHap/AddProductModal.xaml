@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="A2D2KrokanteHap.AddProductModal"
+             Title="AddProductModal">
+    <Grid RowDefinitions="80,*,80">
+        <Label 
+            Text="Product toevoegen"
+            FontSize="24"
+            VerticalOptions="Center" 
+            FontFamily="Showcard"
+            HorizontalOptions="Center"
+            TextColor="{StaticResource Tertiary}"
+            Margin="0,32,0,20"
+            Grid.Row="0"
+        />
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout >
+                <!-- Product -->
+                <VerticalStackLayout>
+                    <Label 
+                        Text="Kleine friet"
+                        HorizontalOptions="Center"
+                        FontSize="Medium"
+                        Margin="0,0,0,14"/>
+                    <Label 
+                        Text="€3,25"
+                        FontSize="24"
+                        VerticalOptions="Center" 
+                        FontFamily="Showcard"
+                        HorizontalOptions="Center"
+                        TextColor="{StaticResource Tertiary}"
+                        Margin="0,0,0,14"
+                    />
+                    <Frame
+                        CornerRadius="8"
+                        HorizontalOptions="Center"
+                        IsClippedToBounds="True"
+                        WidthRequest="150"
+                        Margin="16,0,16,14"
+                        Padding="0"
+                    >
+                        <Image Aspect="AspectFill" Source="/friet.jpg" />
+                    </Frame>
+                    <Button
+                        x:Name="SelectProductButton"
+                        Text="+" 
+                        WidthRequest="60"
+                        FontSize="Large"
+                        Margin="16,0,16,0"
+                        TextColor="{StaticResource White}"
+                        BackgroundColor="{StaticResource Secondary}"
+                        Clicked="SelectProductButton_Clicked"
+                    />
+                </VerticalStackLayout>
+
+                <Label Text="Hi" Margin="60" />
+                <Label Text="Hi" Margin="60" />
+                <Label Text="Hi" Margin="60" />
+                <Label Text="Hi" Margin="60" />
+                <Label Text="Hi" Margin="60" />
+                <Label Text="Hi" Margin="60" />
+                <!--SelectProductButton_Clicked-->
+            </VerticalStackLayout>
+        </ScrollView>
+        <Button
+            Grid.Row="2"
+            x:Name="CancelButton"
+            Text="Annuleren" 
+            Margin="16,10,16,10"
+            TextColor="{StaticResource White}"
+            BackgroundColor="{StaticResource Tertiary}"
+            Clicked="CancelButton_Clicked"
+            HorizontalOptions="Fill" 
+        />
+    </Grid>
+
+</ContentPage>

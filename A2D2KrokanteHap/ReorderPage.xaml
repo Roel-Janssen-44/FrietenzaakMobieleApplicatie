@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="A2D2KrokanteHap.ReorderPage"
+             Title="Opnieuw bestellen">
+    <ScrollView>
+        <VerticalStackLayout>
+
+            <!-- ProductLine -->
+            <VerticalStackLayout>
+                <Label 
+                    Text="Kleine friet"
+                    HorizontalOptions="Center"
+                    FontSize="Medium"
+                    Margin="0,0,0,14"/>
+                <Label 
+                    Text="€3,25"
+                    FontSize="24"
+                    VerticalOptions="Center" 
+                    FontFamily="Showcard"
+                    HorizontalOptions="Center"
+                    TextColor="{StaticResource Tertiary}"
+                    Margin="0,0,0,20"
+                />
+
+                <FlexLayout AlignItems="Center" JustifyContent="Center">
+                    <Button BackgroundColor="{StaticResource Secondary}" FontSize="Large" Padding="0,0,0,4" Text="-" />
+                    <Label 
+                        Text="1 X"
+                        HorizontalOptions="Center"
+                        FontSize="Medium"
+                        Margin="8,0"
+                    />
+                    <Button BackgroundColor="{StaticResource Secondary}" FontSize="Large" Padding="0" Text="+" />
+                </FlexLayout>
+                <Frame
+                    CornerRadius="8"
+                    HorizontalOptions="Center"
+                    IsClippedToBounds="True"
+                    Margin="16,32,16,0"
+                    Padding="0"
+                    WidthRequest="150"
+                >
+                    <Image Aspect="AspectFill" Source="/friet.jpg" />
+                </Frame>
+            </VerticalStackLayout>
+
+            <Button
+                x:Name="AddProductButton"
+                Text="Product toevoegen" 
+                Margin="16,24,16,24"
+                TextColor="{StaticResource White}"
+                BackgroundColor="{StaticResource Secondary}"
+                Clicked="AddProductButton_Clicked"
+                HorizontalOptions="Fill" />
+            <Button
+                x:Name="BackButton"
+                Text="Annuleren" 
+                Margin="16,24,16,8"
+                TextColor="{StaticResource White}"
+                BackgroundColor="{StaticResource Tertiary}"
+                Clicked="BackButton_Clicked"
+                HorizontalOptions="Fill" />
+            <Button
+                x:Name="ReorderButton"
+                Text="Opnieuw bestellen" 
+                Margin="16,8,16,24"
+                TextColor="{StaticResource White}"
+                BackgroundColor="{StaticResource Primary}"
+                Clicked="ReorderButton_Clicked"
+                HorizontalOptions="Fill" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

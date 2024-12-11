@@ -13,6 +13,7 @@ namespace A2D2KrokanteHap
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("showcard.TTF", "Showcard");
                 });
 
 #if DEBUG
