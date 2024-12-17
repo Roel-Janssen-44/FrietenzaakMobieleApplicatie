@@ -53,13 +53,14 @@
                         Clicked="SelectProductButton_Clicked"
                     />
                 </VerticalStackLayout>
+                
 
+                <!--<Label Text="Hi" Margin="60" />
                 <Label Text="Hi" Margin="60" />
                 <Label Text="Hi" Margin="60" />
                 <Label Text="Hi" Margin="60" />
                 <Label Text="Hi" Margin="60" />
-                <Label Text="Hi" Margin="60" />
-                <Label Text="Hi" Margin="60" />
+                <Label Text="Hi" Margin="60" />-->
                 <!--SelectProductButton_Clicked-->
             </VerticalStackLayout>
         </ScrollView>
