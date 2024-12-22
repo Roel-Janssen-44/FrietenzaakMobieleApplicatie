@@ -20,32 +20,57 @@
             <CollectionView x:Name="Test">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame>
-                            <VerticalStackLayout>
+                        <Frame BackgroundColor="#fff">
+                            <VerticalStackLayout >
                                 <Label 
                                     Text="{Binding Product.Name}"
                                     HorizontalOptions="Center"
                                     FontSize="Medium"
                                     Margin="0,0,0,14"/>
-                                <Label 
-                                    Text="€ 3,25"
-                                    FontSize="24"
-                                    VerticalOptions="Center" 
-                                    FontFamily="Showcard"
-                                    HorizontalOptions="Center"
-                                    TextColor="{StaticResource Tertiary}"
-                                    Margin="0,0,0,20"
-                                />
+                                <HorizontalStackLayout HorizontalOptions="Center">
+
+                                    <Label 
+                                        Text="€ "
+                                        FontSize="24"
+                                        VerticalOptions="Center" 
+                                        FontFamily="Showcard"
+                                        HorizontalOptions="Center"
+                                        TextColor="{StaticResource Tertiary}"
+                                        Margin="0,0,0,20"
+                                    />
+                                    <Label 
+                                        Text="{Binding Product.Price}"
+                                        FontSize="24"
+                                        VerticalOptions="Center" 
+                                        FontFamily="Showcard"
+                                        HorizontalOptions="Center"
+                                        TextColor="{StaticResource Tertiary}"
+                                        Margin="0,0,0,20"
+                                    />
+                                </HorizontalStackLayout>
 
                                 <FlexLayout AlignItems="Center" JustifyContent="Center">
-                                    <Button BackgroundColor="{StaticResource Secondary}" FontSize="Large" Padding="0,0,0,4" Text="-" />
+                                    <!--<Button 
+                                        BackgroundColor="{StaticResource Secondary}" 
+                                        FontSize="Large" Padding="0,0,0,4" Text="-" />-->
+                                    <Button
+                                        Clicked="DecreaseProductAmount_Clicked"
+                                        CommandParameter="{Binding Id}"
+                                        BackgroundColor="{StaticResource Secondary}" 
+                                        FontSize="Large" 
+                                        Padding="0,0,0,4" 
+                                        Text="-" />
                                     <Label 
-                                        Text="1 X"
+                                        Text="{Binding Amount, StringFormat='{0} X'}"
                                         HorizontalOptions="Center"
                                         FontSize="Medium"
                                         Margin="8,0"
                                     />
-                                    <Button BackgroundColor="{StaticResource Secondary}" FontSize="Large" Padding="0" Text="+" />
+                                    <Button
+                                        x:Name="IncreaseProductAmount"
+                                        CommandParameter="{Binding Id}"
+                                        Clicked="IncreaseProductAmount_Clicked"
+                                        BackgroundColor="{StaticResource Secondary}" FontSize="Large" Padding="0" Text="+" />
                                 </FlexLayout>
                                 <Frame
                                     CornerRadius="8"
@@ -55,52 +80,13 @@
                                     Padding="0"
                                     WidthRequest="150"
                                 >
-                                    <Image Aspect="AspectFill" Source="/friet.jpg" />
+                                    <Image Aspect="AspectFill" Source="{Binding Product.Image}" />
                                 </Frame>
                             </VerticalStackLayout>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
-            <!-- ProductLine -->
-            <!--<VerticalStackLayout>
-                <Label 
-                    Text="Kleine friet"
-                    HorizontalOptions="Center"
-                    FontSize="Medium"
-                    Margin="0,0,0,14"/>
-                <Label 
-                    Text="€3,25"
-                    FontSize="24"
-                    VerticalOptions="Center" 
-                    FontFamily="Showcard"
-                    HorizontalOptions="Center"
-                    TextColor="{StaticResource Tertiary}"
-                    Margin="0,0,0,20"
-                />
-
-                <FlexLayout AlignItems="Center" JustifyContent="Center">
-                    <Button BackgroundColor="{StaticResource Secondary}" FontSize="Large" Padding="0,0,0,4" Text="-" />
-                    <Label 
-                        Text="1 X"
-                        HorizontalOptions="Center"
-                        FontSize="Medium"
-                        Margin="8,0"
-                    />
-                    <Button BackgroundColor="{StaticResource Secondary}" FontSize="Large" Padding="0" Text="+" />
-                </FlexLayout>
-                <Frame
-                    CornerRadius="8"
-                    HorizontalOptions="Center"
-                    IsClippedToBounds="True"
-                    Margin="16,32,16,0"
-                    Padding="0"
-                    WidthRequest="150"
-                >
-                    <Image Aspect="AspectFill" Source="/friet.jpg" />
-                </Frame>
-            </VerticalStackLayout>-->
 
             <Button
                 x:Name="AddProductButton"

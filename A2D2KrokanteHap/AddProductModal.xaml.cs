@@ -1,22 +1,50 @@
-namespace A2D2KrokanteHap;
+using Frietzaak.Server.Models;
+using Frietzaak.Server.Models;
 
-public partial class AddProductModal : ContentPage
+namespace A2D2KrokanteHap
 {
-	public AddProductModal()
-	{
-		InitializeComponent();
-	}
-
-
-    private async void CancelButton_Clicked(object sender, EventArgs e)
+    public partial class AddProductModal : ContentPage
     {
-        await Navigation.PopModalAsync();
+        // Define a delegate (callback) to pass back the selected product
+        private Action<Product> OnProductSelectedCallback;
+
+        public AddProductModal(Action<Product> onProductSelectedCallback)
+        {
+            InitializeComponent();  // This line should work if everything is set up correctly
+
+            BindingContext = this;
+            ProductListView.ItemsSource = GetProductList();
+
+            // Store the callback method to call later
+            OnProductSelectedCallback = onProductSelectedCallback;
+        }
+
+        private List<Product> GetProductList()
+        {
+            return new List<Product>
+            {
+                new Product { Id = 1, Name = "Kleine friet", Price = 3.00 },
+                new Product { Id = 2, Name = "Grote friet", Price = 3.50 },
+                new Product { Id = 3, Name = "Frikandel", Price = 2.75 }
+            };
+        }
+
+        private async void CancelButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopModalAsync();
+        }
+
+        private async void OnProductSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var selectedProduct = e.SelectedItem as Product;
+            if (selectedProduct != null)
+            {
+                // Call the passed callback method to return the selected product
+                OnProductSelectedCallback?.Invoke(selectedProduct);
+
+                // Close the modal
+                await Navigation.PopModalAsync();
+            }
+        }
     }
-    
-    private async void SelectProductButton_Clicked(object sender, EventArgs e)
-    {
-        // Todo
-        await Navigation.PopModalAsync();
-    }
-    
 }

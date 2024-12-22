@@ -21,7 +21,7 @@ public partial class ReorderPage : ContentPage
     private async void AddProductButton_Clicked(object sender, EventArgs e)
     {
         // Todo - Show modal
-        await Navigation.PushModalAsync(new AddProductModal());
+        //await Navigation.PushModalAsync(new AddProductModal());
     }
     
         
