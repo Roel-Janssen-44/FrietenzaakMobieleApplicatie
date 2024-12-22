@@ -1,5 +1,5 @@
 using Frietzaak.Server.Models;
-using Frietzaak.Server.Models;
+using System.Collections.ObjectModel;
 
 namespace A2D2KrokanteHap
 {
@@ -23,9 +23,9 @@ namespace A2D2KrokanteHap
         {
             return new List<Product>
             {
-                new Product { Id = 1, Name = "Kleine friet", Price = 3.00 },
-                new Product { Id = 2, Name = "Grote friet", Price = 3.50 },
-                new Product { Id = 3, Name = "Frikandel", Price = 2.75 }
+                new Product { Id = 1, Name = "Kleine friet", Price = 3.00, Image = "friet.jpg" },
+                new Product { Id = 2, Name = "Grote friet", Price = 3.50, Image = "friet.jpg" },
+                new Product { Id = 3, Name = "Frikandel", Price = 2.75, Image = "snacks.jpg" }
             };
         }
 
@@ -39,7 +39,6 @@ namespace A2D2KrokanteHap
             var selectedProduct = e.SelectedItem as Product;
             if (selectedProduct != null)
             {
-                // Call the passed callback method to return the selected product
                 OnProductSelectedCallback?.Invoke(selectedProduct);
 
                 // Close the modal

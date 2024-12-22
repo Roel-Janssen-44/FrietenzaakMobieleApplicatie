@@ -2,7 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="A2D2KrokanteHap.AddProductModal"
              Title="AddProductModal">
-    <Grid RowDefinitions="80,*,80">
+    <Grid RowDefinitions="80,*,64">
         <Label 
             Text="Product toevoegen"
             FontSize="24"
@@ -15,16 +15,40 @@
         />
         <ScrollView Grid.Row="1">
             <VerticalStackLayout>
-                <Label Text="Choose a product" FontSize="Medium" HorizontalOptions="Center" />
                 <ListView x:Name="ProductListView" ItemSelected="OnProductSelected">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <TextCell Text="{Binding Name}" TextColor="{StaticResource Tertiary}" Detail="{Binding Price}" />
+                            <ViewCell>
+                                <StackLayout Orientation="Vertical" Padding="10">
+                                    <Label Text="{Binding Name}" 
+                                        HorizontalOptions="Center"
+                                        TextColor="{StaticResource Tertiary}" 
+                                        FontSize="Medium" />
+                                    <Label Text="{Binding Price}" 
+                                        HorizontalOptions="Center"
+                                        FontSize="Medium" 
+                                        FontFamily="Showcard"
+                                        TextColor="{StaticResource Tertiary}" />
+                                    <Frame
+                                        CornerRadius="8"
+                                        HorizontalOptions="Center"
+                                        IsClippedToBounds="True"
+                                        Margin="16,32,16,0"
+                                        Padding="0"
+                                        WidthRequest="150"
+                                    >
+                                        <Image Aspect="AspectFill" Source="{Binding Product.Image}" />
+                                    </Frame>
+
+                                </StackLayout>
+                            </ViewCell>
+
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </VerticalStackLayout>
         </ScrollView>
+
 
         <Button
             Grid.Row="2"

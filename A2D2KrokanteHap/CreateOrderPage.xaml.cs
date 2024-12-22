@@ -1,5 +1,6 @@
 using Frietzaak.Server.Models;
 using System.Collections.ObjectModel;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace A2D2KrokanteHap;
 
@@ -76,6 +77,31 @@ public partial class CreateOrderPage : ContentPage
 
     }
 
+
+    private void CalculateTotal()
+    {
+        double total = CurrentOrder.CalculateTotalAmount(CurrentOrder);
+        OrderTotal.Text = "Totaal: " + ConvertToCurrency(total);
+    }
+
+
+    public string ConvertToCurrency(double price)
+    {
+        // Check if the price is an integer (whole number)
+        if (price % 1 == 0)
+        {
+            // If the price is an integer, display without decimal places and add the '-'
+            return $"€ {price:0},-";
+        }
+        else
+        {
+            // Otherwise, format the price with two decimal places
+            return $"€ {price.ToString("F2").Replace(".", ",")}";
+        }
+    }
+
+
+
     private void IncreaseProductAmount_Clicked(object sender, EventArgs e)
     {
         var button = sender as Button;
@@ -86,6 +112,7 @@ public partial class CreateOrderPage : ContentPage
         if (orderLine != null)
         {
             orderLine.Amount++;
+            CalculateTotal();
         }
     }
 
@@ -106,6 +133,7 @@ public partial class CreateOrderPage : ContentPage
                 {
                     CurrentOrder.OrderLines.Remove(orderLine);
                 }
+                CalculateTotal();
             }
         }
         finally
@@ -114,7 +142,7 @@ public partial class CreateOrderPage : ContentPage
         }
     }
 
-
+    
     private async void BackButton_Clicked(object sender, EventArgs e)
     {
         await Navigation.PopAsync();
@@ -126,40 +154,8 @@ public partial class CreateOrderPage : ContentPage
     }
     private async void AddProductButton_Clicked(object sender, EventArgs e)
     {
-
-        // Show the modal to select a product
-        //var addProductModal = new AddProductModal();
-        //await Navigation.PushModalAsync(addProductModal);
-
         var addProductModal = new AddProductModal(OnProductSelected);
         await Navigation.PushModalAsync(addProductModal);
-
-
-        // Wait for the modal to return and capture the selected product
-        //var selectedProduct = addProductModal.SelectedProduct;
-        //Console.WriteLine("Newly added product", selectedProduct);
-        // If a product was selected, create a new OrderLine and add it to the OrderLines collection
-        //if (selectedProduct != null)
-        //{
-        //    Console.WriteLine($"Newly added product: {selectedProduct.Name}");
-
-        //    // Create a new OrderLine and add it to the OrderLines collection
-        //    var newOrderLine = new OrderLine
-        //    {
-        //        Id = CurrentOrder.OrderLines.Count + 1,  // Generate a new unique ID
-        //        ProductId = selectedProduct.Id,
-        //        Amount = 1,  // Default amount is 1
-        //        Product = selectedProduct
-        //    };
-
-        //    // Add the new OrderLine to the ObservableCollection, which automatically updates the UI
-        //    CurrentOrder.OrderLines.Add(newOrderLine);
-        //}
-        //else
-        //{
-        //    Console.WriteLine("No product selected.");
-        //}
-
     }
 
     // This method will be called when a product is selected in the modal
@@ -172,9 +168,10 @@ public partial class CreateOrderPage : ContentPage
             Id = CurrentOrder.OrderLines.Count + 1,
             ProductId = selectedProduct.Id,
             Amount = 1,
-            Product = selectedProduct
+            Product = selectedProduct,
         };
 
         CurrentOrder.OrderLines.Add(newOrderLine);
+        CalculateTotal();
     }
 }

@@ -22,12 +22,12 @@
                     <DataTemplate>
                         <Frame BackgroundColor="#fff">
                             <VerticalStackLayout >
+                                <HorizontalStackLayout HorizontalOptions="Center">
                                 <Label 
                                     Text="{Binding Product.Name}"
                                     HorizontalOptions="Center"
                                     FontSize="Medium"
-                                    Margin="0,0,0,14"/>
-                                <HorizontalStackLayout HorizontalOptions="Center">
+                                    Margin="0,0,12,14"/>
 
                                     <Label 
                                         Text="€ "
@@ -36,7 +36,7 @@
                                         FontFamily="Showcard"
                                         HorizontalOptions="Center"
                                         TextColor="{StaticResource Tertiary}"
-                                        Margin="0,0,0,20"
+                                        Margin="0,0,6,20"
                                     />
                                     <Label 
                                         Text="{Binding Product.Price}"
@@ -50,9 +50,6 @@
                                 </HorizontalStackLayout>
 
                                 <FlexLayout AlignItems="Center" JustifyContent="Center">
-                                    <!--<Button 
-                                        BackgroundColor="{StaticResource Secondary}" 
-                                        FontSize="Large" Padding="0,0,0,4" Text="-" />-->
                                     <Button
                                         Clicked="DecreaseProductAmount_Clicked"
                                         CommandParameter="{Binding Id}"
@@ -88,10 +85,12 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
+            <Label Text="Totaal: € 0,-" x:Name="OrderTotal" HorizontalOptions="Center" FontFamily="Showcard" FontSize="Medium" />
+
             <Button
                 x:Name="AddProductButton"
                 Text="Product toevoegen" 
-                Margin="16,24,16,24"
+                Margin="16,24,16,10"
                 TextColor="{StaticResource White}"
                 BackgroundColor="{StaticResource Secondary}"
                 Clicked="AddProductButton_Clicked"
