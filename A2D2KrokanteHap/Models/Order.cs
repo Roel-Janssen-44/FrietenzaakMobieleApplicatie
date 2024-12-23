@@ -26,6 +26,14 @@ namespace Frietzaak.Server.Models
         [AllowNull]
         public virtual Customer? Customer { get; set; }
 
+        public double TotalPrice
+        {
+            get
+            {
+                return OrderLines.Sum(ol => ol.Product.Price * ol.Amount);
+            }
+        }
+
 
         public double CalculateTotalAmount(Order order)
         {

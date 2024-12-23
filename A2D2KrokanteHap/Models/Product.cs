@@ -16,6 +16,17 @@ namespace Frietzaak.Server.Models
 
         [Required]
         public double Price { get; set; }
+        public string FormattedPrice
+        {
+            get
+            {
+                if (Price % 1 == 0)
+                    return $"€ {Price:0},-";
+                else
+                    return $"€ {Price:0.00}".Replace(".", ",");
+            }
+        }
+
 
         [AllowNull]
         public double? DiscountPrice { get; set; }

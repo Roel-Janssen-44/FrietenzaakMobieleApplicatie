@@ -24,7 +24,7 @@
                                         HorizontalOptions="Center"
                                         TextColor="{StaticResource Tertiary}" 
                                         FontSize="Medium" />
-                                    <Label Text="{Binding Price}" 
+                                    <Label Text="{Binding FormattedPrice}" 
                                         HorizontalOptions="Center"
                                         FontSize="Medium" 
                                         FontFamily="Showcard"

@@ -1,7 +1,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              BackgroundColor="#fff"
-             Padding="16,0"
+             Padding="0,0"
              x:Class="A2D2KrokanteHap.OrdersPage">
     <Grid RowDefinitions="Auto, Auto, *, Auto">
         <!-- Logo -->
@@ -18,93 +18,52 @@
             FontFamily="Showcard"
             HorizontalOptions="Start"
             Grid.Row="1"
+            Padding="16,0"
             Margin="0,0,0,10"
         />
         <!-- ScrollView -->
-        <ScrollView Grid.Row="2" Padding="0,16">
-            <VerticalStackLayout Spacing="16">
-                <Grid ColumnDefinitions="*,Auto">
-                    <Label Grid.Column="0" Text="10-10-2020" HorizontalOptions="Start" VerticalOptions="Center" />
-                    <Label Grid.Column="1" Text="€20,40" HorizontalOptions="End" VerticalOptions="Center" />
-                </Grid>
-                <Label Text="Ordernr: 3048"/>
-                <Button
-                    x:Name="ViewOrderButton"
-                    Text="Bekijken" 
-                    SemanticProperties.Hint="Counts the number of times you click"
-                    HorizontalOptions="Fill"
-                    Clicked="ViewOrderButton_Clicked"
-                    TextColor="{StaticResource White}"
-                    BackgroundColor="{StaticResource Secondary}"/>
-                <Button
-                    x:Name="ReorderButton"
-                    Text="Opnieuw bestellen" 
-                    Margin="0,0,0,40"
-                    SemanticProperties.Hint="Counts the number of times you click"
-                    TextColor="{StaticResource White}"
-                    BackgroundColor="{StaticResource Primary}"
-                    Clicked="ReorderButton_Clicked"
-                    HorizontalOptions="Fill" />
+        <ScrollView Grid.Row="2" >
+            <VerticalStackLayout >
+                <CollectionView x:Name="OrdersBinding">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BackgroundColor="#fff">
+                                <VerticalStackLayout Spacing="16" >
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <Label Grid.Column="0" 
+                                           Text="{Binding DateTime, StringFormat='{0:dd-MM-yyyy HH:mm}'}" 
+                                           HorizontalOptions="Start" 
+                                           VerticalOptions="Center" />
+                                        <Label Grid.Column="1" 
+                                           Text="{Binding TotalPrice, StringFormat='€{0:0.00}'}" 
+                                           HorizontalOptions="End" 
+                                           VerticalOptions="Center" />
+                                    </Grid>
+                                    <Label Text="{Binding Id, StringFormat='Ordernr: {0}'}"/>
+                                    <!-- View Order Button -->
+                                    <Button
+                                        Text="Bekijken" 
+                                        HorizontalOptions="Fill"
+                                        TextColor="{StaticResource White}"
+                                        BackgroundColor="{StaticResource Secondary}"
+                                        Clicked="ViewOrderButton_Clicked"
+                                        CommandParameter="{Binding Id}" />
 
-                <!-- Repeat more items -->
-                <Grid ColumnDefinitions="*,Auto">
-                    <Label Grid.Column="0" Text="10-10-2020" HorizontalOptions="Start" VerticalOptions="Center" />
-                    <Label Grid.Column="1" Text="€20,40" HorizontalOptions="End" VerticalOptions="Center" />
-                </Grid>
-                <Label Text="Ordernr: 3048"/>
-                <Button
-                    Text="Bekijken" 
-                    SemanticProperties.Hint="Counts the number of times you click"
-                    HorizontalOptions="Fill"
-                    TextColor="{StaticResource White}"
-                    BackgroundColor="{StaticResource Secondary}"/>
-                <Button
-                    Text="Opnieuw bestellen" 
-                    Margin="0,0,0,40"
-                    SemanticProperties.Hint="Counts the number of times you click"
-                    TextColor="{StaticResource White}"
-                    BackgroundColor="{StaticResource Primary}"
-                    HorizontalOptions="Fill" />
-                
-                <!---->
-                <Grid ColumnDefinitions="*,Auto">
-                    <Label Grid.Column="0" Text="10-10-2020" HorizontalOptions="Start" VerticalOptions="Center" />
-                    <Label Grid.Column="1" Text="€20,40" HorizontalOptions="End" VerticalOptions="Center" />
-                </Grid>
-                <Label Text="Ordernr: 3048"/>
-                <Button
-                    Text="Bekijken" 
-                    SemanticProperties.Hint="Counts the number of times you click"
-                    HorizontalOptions="Fill"
-                    TextColor="{StaticResource White}"
-                    BackgroundColor="{StaticResource Secondary}"/>
-                <Button
-                    Text="Opnieuw bestellen" 
-                    Margin="0,0,0,40"
-                    SemanticProperties.Hint="Counts the number of times you click"
-                    TextColor="{StaticResource White}"
-                    BackgroundColor="{StaticResource Primary}"
-                    HorizontalOptions="Fill" />
-                
-                <!---->
-                <Grid ColumnDefinitions="*,Auto">
-                    <Label Grid.Column="0" Text="10-10-2020" HorizontalOptions="Start" VerticalOptions="Center" />
-                    <Label Grid.Column="1" Text="€20,40" HorizontalOptions="End" VerticalOptions="Center" />
-                </Grid>
-                <Label Text="Ordernr: 3048"/>
-                <Button
-                    Text="Bekijken" 
-                    SemanticProperties.Hint="Counts the number of times you click"
-                    HorizontalOptions="Fill"
-                    TextColor="{StaticResource White}"
-                    BackgroundColor="{StaticResource Secondary}"/>
-                <Button
-                    Text="Opnieuw bestellen" 
+                                    <!-- Reorder Button -->
+                                    <Button
+                                        Text="Opnieuw bestellen" 
+                                        Margin="0,0,0,40"
+                                        TextColor="{StaticResource White}"
+                                        BackgroundColor="{StaticResource Primary}"
+                                        Clicked="ReorderButton_Clicked"
+                                        HorizontalOptions="Fill"
+                                        CommandParameter="{Binding Id}" />
 
-                    SemanticProperties.Hint="Counts the number of times you click"
-                    TextColor="{StaticResource White}"
-                    BackgroundColor="{StaticResource Primary}"
-                    HorizontalOptions="Fill" />
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </VerticalStackLayout>
         </ScrollView>
     </Grid>

@@ -1,6 +1,5 @@
 using Frietzaak.Server.Models;
 using System.Collections.ObjectModel;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace A2D2KrokanteHap;
 
