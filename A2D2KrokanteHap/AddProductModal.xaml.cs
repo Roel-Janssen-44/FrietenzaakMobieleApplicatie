@@ -1,4 +1,4 @@
-using Frietzaak.Server.Models;
+using A2D2KrokanteHap.MVVM.Models;
 using System.Collections.ObjectModel;
 
 namespace A2D2KrokanteHap

@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using A2D2KrokanteHap.MVVM.Models;
+using A2D2KrokanteHap.Repositories;
+using Microsoft.Extensions.Logging;
 
 namespace A2D2KrokanteHap
 {
@@ -16,8 +18,10 @@ namespace A2D2KrokanteHap
                     fonts.AddFont("showcard.TTF", "Showcard");
                 });
 
+            builder.Services.AddSingleton<BaseRepository<Product>>();
+
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 
 #endif
 

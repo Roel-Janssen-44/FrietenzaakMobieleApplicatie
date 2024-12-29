@@ -1,4 +1,4 @@
-using Frietzaak.Server.Models;
+using A2D2KrokanteHap.MVVM.Models;
 using System.Collections.ObjectModel;
 
 namespace A2D2KrokanteHap;
@@ -15,7 +15,6 @@ public partial class OrdersPage : ContentPage
             Name = "Kleine friet",
             Category = "Friet",
             Price = 3.00,
-            DiscountPrice = 2.50,
             Image = "friet.jpg"
         };
         Product product2 = new Product

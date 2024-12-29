@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Frietzaak.Server.Models
+namespace A2D2KrokanteHap.MVVM.Models
 {
     public class OrderLine : INotifyPropertyChanged
     {

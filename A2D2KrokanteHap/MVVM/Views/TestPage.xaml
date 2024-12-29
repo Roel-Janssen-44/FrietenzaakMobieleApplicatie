@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="A2D2KrokanteHap.MVVM.Views.TestPage"
+             xmlns:local="clr-namespace:A2D2KrokanteHap.MVVM.ViewModels">
+
+
+
+    <ContentPage.BindingContext>
+        <local:TestPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <Grid RowDefinitions="Auto, Auto, *">
+            <!-- Define rows -->
+
+            <!-- Entry for Product Name -->
+            <VerticalStackLayout HorizontalOptions="Center" Grid.Row="0" VerticalOptions="Center" Padding="10">
+                <Entry Placeholder="Name" Text="{Binding CurrentProduct.Name}" />
+            </VerticalStackLayout>
+
+            <!-- Buttons -->
+            <HorizontalStackLayout Spacing="10" Padding="10" Grid.Row="1">
+                <Button BackgroundColor="Orange" Text="Add/Update" Command="{Binding AddOrUpdateCommand}" />
+                <Button BackgroundColor="Yellow" Text="Delete" Command="{Binding DeleteCommand}" />
+            </HorizontalStackLayout>
+
+            <!-- Product List -->
+            <CollectionView 
+                Grid.Row="2"
+                ItemsSource="{Binding Products}" 
+                SelectionMode="Single" 
+                SelectedItem="{Binding CurrentProduct}"
+            >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" Margin="5" BorderColor="LightGray" CornerRadius="5">
+                            <Label TextColor="orange" Text="{Binding Name}" FontSize="16" />
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <CollectionView 
+                Grid.Row="2"
+                ItemsSource="{Binding Products}" 
+                SelectionMode="Single" 
+                SelectedItem="{Binding CurrentProduct}"
+            >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems Mode="Reveal">
+                                    <SwipeItem 
+                                        Text="Delete"
+                                        BackgroundColor="Red"
+                                        Command="{Binding BindingContext.DeleteCommand, Source={x:Reference Page}}"
+                                        CommandParameter="{Binding Id}" 
+                                    />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <Frame Padding="10" Margin="5" BorderColor="LightGray" CornerRadius="5">
+                                <Label Text="{Binding Name}" FontSize="16" />
+                            </Frame>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </Grid>
+    </ScrollView>
+
+</ContentPage>

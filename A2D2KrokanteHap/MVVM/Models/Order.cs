@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Frietzaak.Server.Models
+namespace A2D2KrokanteHap.MVVM.Models
 {
     public class Order
     {
@@ -9,7 +9,7 @@ namespace Frietzaak.Server.Models
         public int Id { get; set; }
 
         [Required]
-        public DateTime DateTime{ get; set; }
+        public DateTime DateTime { get; set; }
 
         [Required]
         public DateTime EstimatedCompletionTime { get; set; }
