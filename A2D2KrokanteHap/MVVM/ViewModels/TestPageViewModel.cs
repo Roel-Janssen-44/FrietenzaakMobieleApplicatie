@@ -4,6 +4,7 @@ using Bogus;
 using PropertyChanged;
 using System.Windows.Input;
 using A2D2KrokanteHap.MVVM.Models;
+using A2D2KrokanteHap.Logic;
 
 
 namespace A2D2KrokanteHap.MVVM.ViewModels
@@ -16,6 +17,7 @@ namespace A2D2KrokanteHap.MVVM.ViewModels
 
         public ICommand? AddOrUpdateCommand { get; set; }
         public ICommand? DeleteCommand { get; set; }
+        public ICommand? TestCommand { get; set; }
 
         public TestPageViewModel()
         {
@@ -37,6 +39,20 @@ namespace A2D2KrokanteHap.MVVM.ViewModels
                 GenerateNewProduct();
             });
 
+            TestCommand = new Command(async () =>
+            {
+                TestButtonClicked();
+            });
+
+        }
+
+
+        public async void TestButtonClicked()
+        {
+            Console.WriteLine("Test");
+            var products = await ProductLogic.GetProducts();
+            Console.WriteLine(products);
+            Products = products;
         }
 
 

@@ -13,7 +13,7 @@
             Margin="0,32,0,20"
             Grid.Row="0"
         />
-        <ScrollView Grid.Row="1">
+        <ScrollView Grid.Row="1"> 
             <VerticalStackLayout>
                 <ListView x:Name="ProductListView" ItemSelected="OnProductSelected">
                     <ListView.ItemTemplate>

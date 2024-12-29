@@ -27,5 +27,10 @@ namespace A2D2KrokanteHap.MVVM.Models
         }
 
         public string? Image { get; set; }
+
+        public static string GenerateUrlProducts()
+        {
+            return Constants.API_BASE_URL;
+        }
     }
 }

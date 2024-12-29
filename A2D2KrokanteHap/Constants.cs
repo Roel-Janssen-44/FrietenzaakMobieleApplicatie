@@ -4,6 +4,10 @@ namespace A2D2KrokanteHap
 {
     public class Constants
     {
+
+        public const string API_BASE_URL = "https://fakestoreapi.com/products";
+
+
         private const string DBFileName = "Week4TestDB";
 
 

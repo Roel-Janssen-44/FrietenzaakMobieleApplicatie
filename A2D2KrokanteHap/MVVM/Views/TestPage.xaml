@@ -21,6 +21,7 @@
 
             <!-- Buttons -->
             <HorizontalStackLayout Spacing="10" Padding="10" Grid.Row="1">
+                <Button BackgroundColor="pink" Text="Test" Command="{Binding TestCommand}" />
                 <Button BackgroundColor="Orange" Text="Add/Update" Command="{Binding AddOrUpdateCommand}" />
                 <Button BackgroundColor="Yellow" Text="Delete" Command="{Binding DeleteCommand}" />
             </HorizontalStackLayout>
