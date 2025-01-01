@@ -1,20 +1,17 @@
-﻿using System.ComponentModel;
+﻿using A2D2KrokanteHap.Abstractions;
+using SQLite;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace A2D2KrokanteHap.MVVM.Models
 {
-    public class OrderLine : INotifyPropertyChanged
+    [Table("OrderLine")]
+    public class OrderLine : TableData, INotifyPropertyChanged
     {
         private int _amount;
-
-        [Required]
-        public int Id { get; set; }
-
-        [Required]
         public int ProductId { get; set; }
 
         // Amount property now triggers PropertyChanged event when updated
-        [Required]
         public int Amount
         {
             get => _amount;

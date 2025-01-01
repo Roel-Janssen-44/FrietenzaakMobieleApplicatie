@@ -8,6 +8,7 @@ namespace A2D2KrokanteHap.Logic
     {
         public async static Task<List<Product>> GetProducts()
         {
+            List<ProductsResponse.ProductLogicResponse> apiProducts = new List<ProductsResponse.ProductLogicResponse>();
             List<Product> products = new List<Product>();
             var url = Product.GenerateUrlProducts();
 
@@ -17,12 +18,32 @@ namespace A2D2KrokanteHap.Logic
                 var json = await response.Content.ReadAsStringAsync();
 
                 // Deserialize directly into a list of Product
-                products = JsonConvert.DeserializeObject<List<Product>>(json);
-
-                Console.WriteLine(products);
+                apiProducts = JsonConvert.DeserializeObject<List<ProductsResponse.ProductLogicResponse>>(json);
+                // Map API products to local products
+                products = apiProducts.ConvertAll(apiProduct => MapToProduct(apiProduct));
             }
 
+            var hardcodedProducts = new List<Product>
+            {
+                new Product { Id = 1, Name = "Kleine friet", Price = 3.00, Image = "friet.jpg" },
+                new Product { Id = 2, Name = "Grote friet", Price = 3.50, Image = "friet.jpg" },
+                new Product { Id = 3, Name = "Frikandel", Price = 2.75, Image = "snacks.jpg" }
+            };
+
+            products.InsertRange(0, hardcodedProducts);
+
             return products;
+        }
+
+        private static Product MapToProduct(ProductsResponse.ProductLogicResponse apiProduct)
+        {
+            return new Product
+            {
+                Name = apiProduct.title,
+                Category = apiProduct.category,
+                Price = apiProduct.price,
+                Image = apiProduct.image
+            };
         }
 
     }

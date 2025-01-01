@@ -6,7 +6,6 @@ using System.Windows.Input;
 using A2D2KrokanteHap.MVVM.Models;
 using A2D2KrokanteHap.Logic;
 
-
 namespace A2D2KrokanteHap.MVVM.ViewModels
 {
     [AddINotifyPropertyChangedInterface]
@@ -23,6 +22,7 @@ namespace A2D2KrokanteHap.MVVM.ViewModels
         {
             Refresh();
             GenerateNewProduct();
+            FetchProductsFromAPI();
 
             AddOrUpdateCommand = new Command(async () =>
             {
@@ -41,21 +41,16 @@ namespace A2D2KrokanteHap.MVVM.ViewModels
 
             TestCommand = new Command(async () =>
             {
-                TestButtonClicked();
+                //FetchProductsFromAPI();
             });
 
         }
 
-
-        public async void TestButtonClicked()
+        public async void FetchProductsFromAPI()
         {
-            Console.WriteLine("Test");
             var products = await ProductLogic.GetProducts();
-            Console.WriteLine(products);
             Products = products;
         }
-
-
 
         private void GenerateNewProduct()
         {

@@ -9,7 +9,7 @@ namespace A2D2KrokanteHap
             public int count { get; set; }
         }
 
-        public class Root
+        public class ProductLogicResponse
         {
             public int id { get; set; }
             public string title { get; set; }

@@ -1,29 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
+﻿
+using A2D2KrokanteHap.Abstractions;
+using SQLite;
 
 namespace A2D2KrokanteHap.MVVM.Models
 {
-    public class Order
+    [Table("Order")]
+    public class Order : TableData
     {
-        [Required]
-        public int Id { get; set; }
 
-        [Required]
         public DateTime DateTime { get; set; }
-
-        [Required]
         public DateTime EstimatedCompletionTime { get; set; }
-
-        [Required]
         public bool Completed { get; set; }
-
-        [Required]
         public ICollection<OrderLine>? OrderLines { get; set; }
-
-        [AllowNull]
         public int? CustomerId { get; set; }
-
-        [AllowNull]
         public virtual Customer? Customer { get; set; }
 
         public double TotalPrice
@@ -33,7 +22,6 @@ namespace A2D2KrokanteHap.MVVM.Models
                 return OrderLines.Sum(ol => ol.Product.Price * ol.Amount);
             }
         }
-
 
         public double CalculateTotalAmount(Order order)
         {
@@ -48,5 +36,4 @@ namespace A2D2KrokanteHap.MVVM.Models
             return total;
         }
     }
-
 }

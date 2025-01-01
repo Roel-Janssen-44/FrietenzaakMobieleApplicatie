@@ -42,7 +42,7 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <CollectionView 
+            <!--<CollectionView 
                 Grid.Row="2"
                 ItemsSource="{Binding Products}" 
                 SelectionMode="Single" 
@@ -67,7 +67,7 @@
                         </SwipeView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-            </CollectionView>
+            </CollectionView>-->
 
         </Grid>
     </ScrollView>

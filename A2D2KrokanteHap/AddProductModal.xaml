@@ -37,7 +37,7 @@
                                         Padding="0"
                                         WidthRequest="150"
                                     >
-                                        <Image Aspect="AspectFill" Source="{Binding Product.Image}" />
+                                        <Image Aspect="AspectFill" Source="{Binding Image}" />
                                     </Frame>
 
                                 </StackLayout>

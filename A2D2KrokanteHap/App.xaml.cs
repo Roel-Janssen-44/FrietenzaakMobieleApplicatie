@@ -7,13 +7,19 @@ namespace A2D2KrokanteHap
     {
         
         public static BaseRepository<Product>? ProductRepo { get; private set; }
+        public static BaseRepository<Customer>? CustomerRepo { get; private set; }
+        public static BaseRepository<OrderLine>? OrderLineRepo { get; private set; }
+        public static BaseRepository<Order>? OrderRepo { get; private set; }
 
-        public App(BaseRepository<Product> productRepo)
+        public App(BaseRepository<Product> productRepo, BaseRepository<Order> orderRepo, BaseRepository<Customer> customerRepo, BaseRepository<OrderLine> orderLineRepo)
         {
             InitializeComponent();
 
             ProductRepo = productRepo;
-            MainPage = new TestPage();
+            OrderRepo = orderRepo;
+            CustomerRepo = customerRepo;
+            OrderLineRepo = orderLineRepo;
+            MainPage = new CreateOrderPage();
         }
     }
 }

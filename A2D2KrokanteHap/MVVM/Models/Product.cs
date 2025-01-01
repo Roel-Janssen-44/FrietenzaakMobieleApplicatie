@@ -4,7 +4,7 @@ using A2D2KrokanteHap.Abstractions;
 
 namespace A2D2KrokanteHap.MVVM.Models
 {
-    [Table("Students")]
+    [Table("Product")]
     public class Product : TableData
     {
 

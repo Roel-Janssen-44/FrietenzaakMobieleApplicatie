@@ -19,6 +19,9 @@ namespace A2D2KrokanteHap
                 });
 
             builder.Services.AddSingleton<BaseRepository<Product>>();
+            builder.Services.AddSingleton<BaseRepository<Order>>();
+            builder.Services.AddSingleton<BaseRepository<OrderLine>>();
+            builder.Services.AddSingleton<BaseRepository<Customer>>();
 
 #if DEBUG
             builder.Logging.AddDebug();

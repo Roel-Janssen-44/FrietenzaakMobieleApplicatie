@@ -1,31 +1,23 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SQLite;
+using System.ComponentModel.DataAnnotations;
 
 namespace A2D2KrokanteHap.MVVM.Models
 {
-    public class Customer
+    [Table("Customer")]
+    public class Customer : Abstractions.TableData
     {
-        [Required]
-        public int Id { get; set; }
+        public string? Name { get; set; }
 
-        [Required]
-        public string Name { get; set; }
+        public string? Email { get; set; }
 
-        [Required]
-        public string Email { get; set; }
+        public string? Phonenumber { get; set; }
 
-        [Required]
-        public string Phonenumber { get; set; }
+        public string? Streetname { get; set; }
 
-        [Required]
-        public string Streetname { get; set; }
+        public string? Housenumber { get; set; }
+        
+        public string? Zipcode { get; set; }
 
-        [Required]
-        public string Housenumber { get; set; }
-
-        [Required]
-        public string Zipcode { get; set; }
-
-        [Required]
         public ICollection<Order>? Orders { get; set; }
     }
 }
