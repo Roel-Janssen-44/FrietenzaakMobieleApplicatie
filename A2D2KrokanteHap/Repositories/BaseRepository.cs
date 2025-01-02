@@ -2,6 +2,8 @@
 
 using SQLite;
 using A2D2KrokanteHap.Abstractions;
+using System.Linq.Expressions;
+using SQLiteNetExtensions.Extensions;
 
 namespace A2D2KrokanteHap.Repositories
 {
@@ -89,6 +91,50 @@ namespace A2D2KrokanteHap.Repositories
                 {
                     statusMessage = $"Error {ex.Message}";
                 }
+            }
+        }
+
+        // **New Method: Get entities by condition**
+        public T? GetByCondition(Expression<Func<T, bool>> predicate)
+        {
+            try
+            {
+                return connection.Table<T>().FirstOrDefault(predicate);
+            }
+            catch (Exception ex)
+            {
+                statusMessage = $"Error: {ex.Message}";
+            }
+            return null;
+        }
+
+        public void SaveEntityWithChildren(T entity, bool recursive = false)
+        {
+            connection.InsertWithChildren(entity, recursive);
+        }
+
+        public List<T> GetEntitiesWithChildren()
+        {
+            try
+            {
+                return connection.GetAllWithChildren<T>().ToList();
+            }
+            catch (Exception ex)
+            {
+                statusMessage = $"Error: {ex.Message}";
+            }
+            return null;
+        }
+
+        public void DeleteEntityWithChildren(T entity)
+        {
+            try
+            {
+                connection.Delete(entity, true);
+            }
+            catch (Exception ex)
+            {
+                statusMessage = $"Error: {ex.Message}";
             }
         }
     }

@@ -43,35 +43,37 @@ public partial class CreateOrderPage : ContentPage
             DateTime = DateTime.Now,
             EstimatedCompletionTime = DateTime.Now.AddMinutes(20),
             Completed = false,
-            OrderLines = new ObservableCollection<OrderLine>
+            OrderLines = []
+            //OrderLines = new <OrderLine>
 
             //OrderLines = new List<OrderLine>
-            {
-                new OrderLine
-                {
-                    Id = 1,
-                    ProductId = 1,
-                    Amount = 2,
-                    Product = product1
-                },
-                new OrderLine
-                {
-                    Id = 2,
-                    ProductId = 2,
-                    Amount = 1,
-                    Product = product2
-                },
-                new OrderLine
-                {
-                    Id = 3,
-                    ProductId = 3,
-                    Amount = 1,
-                    Product = product3
-                }
-            }
+            //{
+                //new OrderLine
+                //{
+                //    Id = 1,
+                //    ProductId = 1,
+                //    Amount = 2,
+                //    Product = product1
+                //},
+                //new OrderLine
+                //{
+                //    Id = 2,
+                //    ProductId = 2,
+                //    Amount = 1,
+                //    Product = product2
+                //},
+                //new OrderLine
+                //{
+                //    Id = 3,
+                //    ProductId = 3,
+                //    Amount = 1,
+                //    Product = product3
+                //}
+            //}
         };
 
         Test.ItemsSource = CurrentOrder.OrderLines;
+
 
     }
 

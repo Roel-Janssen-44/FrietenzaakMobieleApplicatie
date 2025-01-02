@@ -1,6 +1,7 @@
 ﻿
 using A2D2KrokanteHap.Abstractions;
 using SQLite;
+using SQLiteNetExtensions.Attributes;
 
 namespace A2D2KrokanteHap.MVVM.Models
 {
@@ -11,9 +12,16 @@ namespace A2D2KrokanteHap.MVVM.Models
         public DateTime DateTime { get; set; }
         public DateTime EstimatedCompletionTime { get; set; }
         public bool Completed { get; set; }
-        public ICollection<OrderLine>? OrderLines { get; set; }
+
+        //public ICollection<OrderLine>? OrderLines { get; set; }
+        [OneToMany(CascadeOperations = CascadeOperation.All)]
+        public List<OrderLine> OrderLines { get; set; } = new();
+
+
+        [ForeignKey(typeof(Customer))]
         public int? CustomerId { get; set; }
-        public virtual Customer? Customer { get; set; }
+        [OneToOne]
+        public Customer? Customer { get; set; }
 
         public double TotalPrice
         {

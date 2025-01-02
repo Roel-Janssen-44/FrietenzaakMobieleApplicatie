@@ -1,5 +1,6 @@
 ﻿using A2D2KrokanteHap.Abstractions;
 using SQLite;
+using SQLiteNetExtensions.Attributes;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -9,7 +10,12 @@ namespace A2D2KrokanteHap.MVVM.Models
     public class OrderLine : TableData, INotifyPropertyChanged
     {
         private int _amount;
+
+        [ForeignKey(typeof(Product))]
         public int ProductId { get; set; }
+
+        [OneToOne]
+        public Product? Product { get; set; }
 
         // Amount property now triggers PropertyChanged event when updated
         public int Amount
@@ -25,14 +31,11 @@ namespace A2D2KrokanteHap.MVVM.Models
             }
         }
 
-        [Required]
-        public virtual Product? Product { get; set; }
-
         // Event to notify property changes
         public event PropertyChangedEventHandler PropertyChanged;
 
         // Method to raise PropertyChanged event
-        protected virtual void OnPropertyChanged(string propertyName)
+        protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

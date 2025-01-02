@@ -16,7 +16,6 @@
                 Margin="0,20,0,30"
             />
 
-
             <CollectionView x:Name="Test">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>

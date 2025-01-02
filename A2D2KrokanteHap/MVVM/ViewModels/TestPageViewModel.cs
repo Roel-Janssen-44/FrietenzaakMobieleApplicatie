@@ -17,6 +17,7 @@ namespace A2D2KrokanteHap.MVVM.ViewModels
         public ICommand? AddOrUpdateCommand { get; set; }
         public ICommand? DeleteCommand { get; set; }
         public ICommand? TestCommand { get; set; }
+        public ICommand? LogoutCommand { get; set; }
 
         public TestPageViewModel()
         {
@@ -27,14 +28,12 @@ namespace A2D2KrokanteHap.MVVM.ViewModels
             AddOrUpdateCommand = new Command(async () =>
             {
                 App.ProductRepo.SaveEntity(CurrentProduct);
-                Console.WriteLine(App.ProductRepo.statusMessage);
                 GenerateNewProduct();
                 Refresh();
             });
 
             DeleteCommand = new Command(async () =>
             {
-                App.ProductRepo.DeleteEntity(CurrentProduct);
                 Refresh();
                 GenerateNewProduct();
             });
@@ -42,6 +41,16 @@ namespace A2D2KrokanteHap.MVVM.ViewModels
             TestCommand = new Command(async () =>
             {
                 //FetchProductsFromAPI();
+                int? loggedInUserId = Preferences.Get("LoggedInUserId", -1);
+                Console.WriteLine($"Logged in User ID: {loggedInUserId}");
+
+            });
+            LogoutCommand = new Command(async () =>
+            {
+                Preferences.Set("IsLoggedIn", false);
+                Preferences.Set("LoggedInUser", null);
+                Preferences.Set("LoggedInUserId", -1);
+                //new LoginPage();
             });
 
         }

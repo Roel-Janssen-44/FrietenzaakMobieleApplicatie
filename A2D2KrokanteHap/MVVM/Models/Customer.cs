@@ -1,4 +1,5 @@
 ﻿using SQLite;
+using SQLiteNetExtensions.Attributes;
 using System.ComponentModel.DataAnnotations;
 
 namespace A2D2KrokanteHap.MVVM.Models
@@ -6,18 +7,13 @@ namespace A2D2KrokanteHap.MVVM.Models
     [Table("Customer")]
     public class Customer : Abstractions.TableData
     {
-        public string? Name { get; set; }
+        public string? UserName { get; set; }
+        public string? Password { get; set; }
 
-        public string? Email { get; set; }
 
-        public string? Phonenumber { get; set; }
+        [OneToMany(CascadeOperations = CascadeOperation.All)]
+        public List<Order> Orders { get; set; } = new(); // Initialized to avoid null issues
 
-        public string? Streetname { get; set; }
-
-        public string? Housenumber { get; set; }
-        
-        public string? Zipcode { get; set; }
-
-        public ICollection<Order>? Orders { get; set; }
+        //public ICollection<Order>? Orders { get; set; }
     }
 }
