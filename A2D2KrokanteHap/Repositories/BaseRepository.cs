@@ -68,7 +68,7 @@ namespace A2D2KrokanteHap.Repositories
             return null;
         }
 
-        public void SaveEntity(T entity)
+        public int SaveEntity(T entity)
         {
             int result = 0;
             if (entity != null)
@@ -92,6 +92,7 @@ namespace A2D2KrokanteHap.Repositories
                     statusMessage = $"Error {ex.Message}";
                 }
             }
+            return entity.Id;
         }
 
         // **New Method: Get entities by condition**
@@ -108,9 +109,11 @@ namespace A2D2KrokanteHap.Repositories
             return null;
         }
 
-        public void SaveEntityWithChildren(T entity, bool recursive = false)
+        public int SaveEntityWithChildren(T entity, bool recursive = false)
         {
             connection.InsertWithChildren(entity, recursive);
+            return entity.Id;
+
         }
 
         public List<T> GetEntitiesWithChildren()

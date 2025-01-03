@@ -42,24 +42,26 @@
                                 </HorizontalStackLayout>
 
                                 <FlexLayout AlignItems="Center" JustifyContent="Center">
-                                    <!--<Button
-                                        Clicked="DecreaseProductAmount_Clicked"
+                                    <Button
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:CreateOrderViewModel}}, Path=DecreaseProductAmountCommand}"
                                         CommandParameter="{Binding Id}"
                                         BackgroundColor="{StaticResource Secondary}" 
                                         FontSize="Large" 
                                         Padding="0,0,0,4" 
-                                        Text="-" />-->
+                                        Text="-" />
                                     <Label 
                                         Text="{Binding Amount, StringFormat='{0} X'}"
                                         HorizontalOptions="Center"
                                         FontSize="Medium"
                                         Margin="8,0"
                                     />
-                                    <!--<Button
-                                        x:Name="IncreaseProductAmount"
+                                    <Button
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:CreateOrderViewModel}}, Path=IncreaseProductAmountCommand}"
                                         CommandParameter="{Binding Id}"
-                                        Clicked="IncreaseProductAmount_Clicked"
-                                        BackgroundColor="{StaticResource Secondary}" FontSize="Large" Padding="0" Text="+" />-->
+                                        BackgroundColor="{StaticResource Secondary}" 
+                                        FontSize="Large" 
+                                        Padding="0,0,0,4" 
+                                        Text="+" />
                                 </FlexLayout>
                                 <Frame
                                     CornerRadius="8"
@@ -77,15 +79,19 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <Label Text="Totaal: € 0,-" x:Name="OrderTotal" HorizontalOptions="Center" FontFamily="Showcard" FontSize="Medium" />
+            <Label Text="{Binding TotalPrice, StringFormat='Totaal: € {0:F2}'}" 
+               x:Name="OrderTotal" 
+               HorizontalOptions="Center" 
+               FontFamily="Showcard" 
+               FontSize="Medium" />
 
-            <!--<Button
+            <Button
                 x:Name="AddProductButton"
                 Text="Product toevoegen" 
                 Margin="16,24,16,10"
                 TextColor="{StaticResource White}"
                 BackgroundColor="{StaticResource Secondary}"
-                Clicked="AddProductButton_Clicked"
+                Command="{Binding Source={RelativeSource AncestorType={x:Type local:CreateOrderViewModel}}, Path=AddProductCommand}"
                 HorizontalOptions="Fill" />
             <Button
                 x:Name="OrderButton"
@@ -93,8 +99,8 @@
                 Margin="16,8,16,24"
                 TextColor="{StaticResource White}"
                 BackgroundColor="{StaticResource Primary}"
-                Clicked="OrderButton_Clicked"
-                HorizontalOptions="Fill" />-->
+                Command="{Binding Source={RelativeSource AncestorType={x:Type local:CreateOrderViewModel}}, Path=CreateOrderCommand}"
+                HorizontalOptions="Fill" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage> 

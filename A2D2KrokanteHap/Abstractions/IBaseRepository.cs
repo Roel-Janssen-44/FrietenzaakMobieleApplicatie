@@ -4,8 +4,8 @@ namespace A2D2KrokanteHap.Abstractions
 {
     public interface IBaseRepository<T> : IDisposable where T : TableData, new()
     {
-        void SaveEntity(T entity);
-        void SaveEntityWithChildren(T entity, bool recursive = false);
+        int SaveEntity(T entity);
+        int SaveEntityWithChildren(T entity, bool recursive = false);
 
 
         T? GetEntity(int id);

@@ -2,6 +2,7 @@
 using A2D2KrokanteHap.Abstractions;
 using SQLite;
 using SQLiteNetExtensions.Attributes;
+using System.Collections.ObjectModel;
 
 namespace A2D2KrokanteHap.MVVM.Models
 {
@@ -15,7 +16,9 @@ namespace A2D2KrokanteHap.MVVM.Models
 
         //public ICollection<OrderLine>? OrderLines { get; set; }
         [OneToMany(CascadeOperations = CascadeOperation.All)]
-        public List<OrderLine> OrderLines { get; set; } = new();
+        //public List<OrderLine> OrderLines { get; set; } = new();
+        public ObservableCollection<OrderLine> OrderLines { get; set; } // Use ObservableCollection here
+
 
 
         [ForeignKey(typeof(Customer))]
@@ -31,17 +34,5 @@ namespace A2D2KrokanteHap.MVVM.Models
             }
         }
 
-        public double CalculateTotalAmount(Order order)
-        {
-            double total = 0;
-
-            foreach (var line in order.OrderLines)
-            {
-                double price = line.Product.Price;
-                total += price * line.Amount;
-            }
-
-            return total;
-        }
     }
 }
