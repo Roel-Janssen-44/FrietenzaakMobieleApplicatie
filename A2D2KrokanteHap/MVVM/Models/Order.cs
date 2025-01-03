@@ -11,26 +11,27 @@ namespace A2D2KrokanteHap.MVVM.Models
     {
 
         public DateTime DateTime { get; set; }
+        
         public DateTime EstimatedCompletionTime { get; set; }
+        
         public bool Completed { get; set; }
 
-        //public ICollection<OrderLine>? OrderLines { get; set; }
         [OneToMany(CascadeOperations = CascadeOperation.All)]
-        //public List<OrderLine> OrderLines { get; set; } = new();
-        public ObservableCollection<OrderLine> OrderLines { get; set; } // Use ObservableCollection here
-
-
+        public ObservableCollection<OrderLine> OrderLines { get; set; } = new();
 
         [ForeignKey(typeof(Customer))]
         public int? CustomerId { get; set; }
-        [OneToOne]
+
+        [ManyToOne(CascadeOperations = CascadeOperation.All)]
         public Customer? Customer { get; set; }
 
+        [Ignore]
         public double TotalPrice
         {
             get
             {
-                return OrderLines.Sum(ol => ol.Product.Price * ol.Amount);
+                return OrderLines?.Where(ol => ol?.Product != null)
+                                  .Sum(ol => ol.Product.Price * ol.Amount) ?? 0;
             }
         }
 

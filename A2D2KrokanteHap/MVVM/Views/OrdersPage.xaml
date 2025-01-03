@@ -28,23 +28,53 @@
             Margin="0,0,0,10"
         />
 
-        <CollectionView 
-                Grid.Row="2"
-                ItemsSource="{Binding Orders}" 
-            >
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame Padding="10" Margin="5" BorderColor="LightGray" CornerRadius="5">
-                        <Label TextColor="orange" Text="{Binding Id}" FontSize="16" />
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-        
-        
-        <!-- ScrollView -->
         <ScrollView Grid.Row="2" >
             <VerticalStackLayout >
+                <CollectionView 
+                        Grid.Row="2"
+                        ItemsSource="{Binding Orders}" 
+                    >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BackgroundColor="#fff">
+                                <VerticalStackLayout Spacing="16" >
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <Label Grid.Column="0" 
+                                           Text="{Binding DateTime, StringFormat='{0:dd-MM-yyyy HH:mm}'}" 
+                                           HorizontalOptions="Start" 
+                                           VerticalOptions="Center" />
+                                        <Label Grid.Column="1" 
+                                           Text="{Binding TotalPrice, StringFormat='€{0:0.00}'}" 
+                                           HorizontalOptions="End" 
+                                           VerticalOptions="Center" />
+                                    </Grid>
+                                    <Label Text="{Binding Id, StringFormat='Ordernr: {0}'}"/>
+                                    <!-- View Order Button -->
+                                    <Button
+                                        Text="Bekijken" 
+                                        HorizontalOptions="Fill"
+                                        TextColor="{StaticResource White}"
+                                        BackgroundColor="{StaticResource Secondary}"
+                                        CommandParameter="{Binding Id}" />
+                                    <!-- Reorder Button -->
+                                    <Button
+                                        Text="Opnieuw bestellen" 
+                                        Margin="0,0,0,40"
+                                        TextColor="{StaticResource White}"
+                                        BackgroundColor="{StaticResource Primary}"
+                                        HorizontalOptions="Fill"
+                                        CommandParameter="{Binding Id}" />
+
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- ScrollView -->
+
                 <CollectionView x:Name="OrdersBinding">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
@@ -61,7 +91,8 @@
                                            VerticalOptions="Center" />
                                     </Grid>
                                     <Label Text="{Binding Id, StringFormat='Ordernr: {0}'}"/>
-                                    <!-- View Order Button --><!--
+                                    <!-- View Order Button -->
+                                    <!--
                                     <Button
                                         Text="Bekijken" 
                                         HorizontalOptions="Fill"
@@ -70,7 +101,9 @@
                                         Clicked="ViewOrderButton_Clicked"
                                         CommandParameter="{Binding Id}" />
 
-                                    --><!-- Reorder Button --><!--
+                                    -->
+                                    <!-- Reorder Button -->
+                                    <!--
                                     <Button
                                         Text="Opnieuw bestellen" 
                                         Margin="0,0,0,40"
@@ -85,7 +118,6 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-            </VerticalStackLayout>
-        </ScrollView>
+
     </Grid>
 </ContentPage>

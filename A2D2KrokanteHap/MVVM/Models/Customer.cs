@@ -1,19 +1,17 @@
-﻿using SQLite;
+﻿using A2D2KrokanteHap.Abstractions;
+using SQLite;
 using SQLiteNetExtensions.Attributes;
-using System.ComponentModel.DataAnnotations;
 
 namespace A2D2KrokanteHap.MVVM.Models
 {
     [Table("Customer")]
-    public class Customer : Abstractions.TableData
+    public class Customer : TableData
     {
         public string? UserName { get; set; }
         public string? Password { get; set; }
 
-
         [OneToMany(CascadeOperations = CascadeOperation.All)]
-        public List<Order> Orders { get; set; } = new(); // Initialized to avoid null issues
+        public List<Order> Orders { get; set; } = new();
 
-        //public ICollection<Order>? Orders { get; set; }
     }
 }

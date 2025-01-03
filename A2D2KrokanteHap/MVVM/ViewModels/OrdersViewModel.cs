@@ -1,7 +1,5 @@
 ﻿using A2D2KrokanteHap.MVVM.Models;
-using Bogus;
 using PropertyChanged;
-using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace A2D2KrokanteHap.MVVM.ViewModels
@@ -26,7 +24,7 @@ namespace A2D2KrokanteHap.MVVM.ViewModels
 
         private void Refresh()
         {
-            Orders = App.OrderRepo.GetEntities();
+            Orders = App.OrderRepo.GetEntitiesWithChildren();
         }
     }
 }

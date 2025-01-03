@@ -9,6 +9,11 @@ namespace A2D2KrokanteHap.MVVM.Models
     [Table("OrderLine")]
     public class OrderLine : TableData, INotifyPropertyChanged
     {
+
+        [ForeignKey(typeof(Order))]
+        public int OrderId { get; set; }
+
+
         private int _amount;
 
         [ForeignKey(typeof(Product))]
@@ -17,7 +22,6 @@ namespace A2D2KrokanteHap.MVVM.Models
         [OneToOne]
         public Product? Product { get; set; }
 
-        // Amount property now triggers PropertyChanged event when updated
         public int Amount
         {
             get => _amount;
@@ -26,15 +30,13 @@ namespace A2D2KrokanteHap.MVVM.Models
                 if (_amount != value)
                 {
                     _amount = value;
-                    OnPropertyChanged(nameof(Amount)); // Notify the UI about the change
+                    OnPropertyChanged(nameof(Amount)); 
                 }
             }
         }
 
-        // Event to notify property changes
         public event PropertyChangedEventHandler PropertyChanged;
 
-        // Method to raise PropertyChanged event
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
