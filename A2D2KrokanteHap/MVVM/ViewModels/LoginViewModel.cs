@@ -67,6 +67,7 @@ namespace A2D2KrokanteHap.MVVM.ViewModels
                 Preferences.Set("LoggedInUser", user.UserName);
                 Preferences.Set("LoggedInUserId", user.Id);
                 //await Shell.Current.GoToAsync("//CreateOrderPage");
+                Application.Current.MainPage = new BottomNavigation();
             }
             else
             {

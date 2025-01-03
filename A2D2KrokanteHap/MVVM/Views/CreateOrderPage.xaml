@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
+
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="A2D2KrokanteHap.CreateOrderPage">
+             x:Class="A2D2KrokanteHap.MVVM.Views.CreateOrderPage"
+             xmlns:local="clr-namespace:A2D2KrokanteHap.MVVM.ViewModels">
 
     <ScrollView>
         <VerticalStackLayout>
@@ -15,8 +17,8 @@
                 Grid.Row="1"
                 Margin="0,20,0,30"
             />
-
-            <CollectionView x:Name="Test">
+                
+            <CollectionView ItemsSource="{Binding CurrentOrder.OrderLines}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame BackgroundColor="#fff">
@@ -40,24 +42,24 @@
                                 </HorizontalStackLayout>
 
                                 <FlexLayout AlignItems="Center" JustifyContent="Center">
-                                    <Button
+                                    <!--<Button
                                         Clicked="DecreaseProductAmount_Clicked"
                                         CommandParameter="{Binding Id}"
                                         BackgroundColor="{StaticResource Secondary}" 
                                         FontSize="Large" 
                                         Padding="0,0,0,4" 
-                                        Text="-" />
+                                        Text="-" />-->
                                     <Label 
                                         Text="{Binding Amount, StringFormat='{0} X'}"
                                         HorizontalOptions="Center"
                                         FontSize="Medium"
                                         Margin="8,0"
                                     />
-                                    <Button
+                                    <!--<Button
                                         x:Name="IncreaseProductAmount"
                                         CommandParameter="{Binding Id}"
                                         Clicked="IncreaseProductAmount_Clicked"
-                                        BackgroundColor="{StaticResource Secondary}" FontSize="Large" Padding="0" Text="+" />
+                                        BackgroundColor="{StaticResource Secondary}" FontSize="Large" Padding="0" Text="+" />-->
                                 </FlexLayout>
                                 <Frame
                                     CornerRadius="8"
@@ -77,7 +79,7 @@
 
             <Label Text="Totaal: € 0,-" x:Name="OrderTotal" HorizontalOptions="Center" FontFamily="Showcard" FontSize="Medium" />
 
-            <Button
+            <!--<Button
                 x:Name="AddProductButton"
                 Text="Product toevoegen" 
                 Margin="16,24,16,10"
@@ -92,7 +94,7 @@
                 TextColor="{StaticResource White}"
                 BackgroundColor="{StaticResource Primary}"
                 Clicked="OrderButton_Clicked"
-                HorizontalOptions="Fill" />
+                HorizontalOptions="Fill" />-->
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage> 

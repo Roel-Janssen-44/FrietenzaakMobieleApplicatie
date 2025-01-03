@@ -1,14 +1,28 @@
-using A2D2KrokanteHap.MVVM.Models;
-using System.Collections.ObjectModel;
+﻿using A2D2KrokanteHap.MVVM.Models;
+using Bogus;
+using PropertyChanged;
+using System.Windows.Input;
 
-namespace A2D2KrokanteHap;
-
-public partial class OrdersPage : ContentPage
+namespace A2D2KrokanteHap.MVVM.ViewModels
 {
-	public OrdersPage()
-	{
-		InitializeComponent();
-        
+    [AddINotifyPropertyChangedInterface]
+    public class OrdersViewModel
+    {
+        public List<Order>? Orders { get; set; }
+
+        public ICommand? ViewOrderCommand { get; set; }
+
+        public OrdersViewModel()
+        {
+            Refresh();
+
+            ViewOrderCommand = new Command(async () =>
+            {
+                // Command implementation
+            });
+        }
+
+        // Sample products
         Product product1 = new Product
         {
             Id = 1,
@@ -17,6 +31,7 @@ public partial class OrdersPage : ContentPage
             Price = 3.00,
             Image = "friet.jpg"
         };
+
         Product product2 = new Product
         {
             Id = 2,
@@ -25,6 +40,7 @@ public partial class OrdersPage : ContentPage
             Price = 3.50,
             Image = "friet.jpg"
         };
+
         Product product3 = new Product
         {
             Id = 3,
@@ -34,9 +50,11 @@ public partial class OrdersPage : ContentPage
             Image = "snacks.jpg"
         };
 
-        List<Order> Orders = new List<Order>
+        private void Refresh()
         {
-            new Order
+            Orders = App.OrderRepo.GetEntities();
+
+            Orders.Add(new Order
             {
                 Id = 1,
                 DateTime = DateTime.Now,
@@ -66,8 +84,9 @@ public partial class OrdersPage : ContentPage
                         Product = product3
                     }
                 }
-            },
-            new Order
+            });
+
+            Orders.Add(new Order
             {
                 Id = 2,
                 DateTime = DateTime.Now,
@@ -81,42 +100,10 @@ public partial class OrdersPage : ContentPage
                         ProductId = 1,
                         Amount = 2,
                         Product = product1
-                    },
+                    }
                 }
-            }
-        };
+            });
 
-
-
-        OrdersBinding.ItemsSource = Orders;
-
+        }
     }
-
-    private async void ViewOrderButton_Clicked(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new ViewOrderPage());
-    }
-
-    private async void ReorderButton_Clicked(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new ReorderPage());
-    }
-    //private async void ViewOrderButton_Clicked(object sender, EventArgs e)
-    //{
-    //    var button = sender as Button;
-    //    int orderId = (int)button.CommandParameter;
-
-    //    // Navigate to order details page
-    //    await Navigation.PushAsync(new ViewOrderPage(orderId)); // Pass the ID to view order details
-    //}
-
-    //private async void ReorderButton_Clicked(object sender, EventArgs e)
-    //{
-    //    var button = sender as Button;
-    //    int orderId = (int)button.CommandParameter;
-
-    //    // Navigate to reorder page
-    //    await Navigation.PushAsync(new ReorderPage(orderId)); // Pass the ID to reorder
-    //}
-
 }

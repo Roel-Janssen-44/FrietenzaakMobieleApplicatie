@@ -2,7 +2,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              BackgroundColor="#fff"
              Padding="0,0"
-             x:Class="A2D2KrokanteHap.OrdersPage">
+             x:Class="A2D2KrokanteHap.MVVM.Views.OrdersPage"
+             xmlns:local="clr-namespace:A2D2KrokanteHap.MVVM.ViewModels">
+
+    <ContentPage.BindingContext>
+        <local:OrdersViewModel />
+    </ContentPage.BindingContext>
+
     <Grid RowDefinitions="Auto, Auto, *, Auto">
         <!-- Logo -->
         <Image
@@ -21,6 +27,21 @@
             Padding="16,0"
             Margin="0,0,0,10"
         />
+
+        <CollectionView 
+                Grid.Row="2"
+                ItemsSource="{Binding Orders}" 
+            >
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" Margin="5" BorderColor="LightGray" CornerRadius="5">
+                        <Label TextColor="orange" Text="{Binding Id}" FontSize="16" />
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+        
         <!-- ScrollView -->
         <ScrollView Grid.Row="2" >
             <VerticalStackLayout >
@@ -40,7 +61,7 @@
                                            VerticalOptions="Center" />
                                     </Grid>
                                     <Label Text="{Binding Id, StringFormat='Ordernr: {0}'}"/>
-                                    <!-- View Order Button -->
+                                    <!-- View Order Button --><!--
                                     <Button
                                         Text="Bekijken" 
                                         HorizontalOptions="Fill"
@@ -49,7 +70,7 @@
                                         Clicked="ViewOrderButton_Clicked"
                                         CommandParameter="{Binding Id}" />
 
-                                    <!-- Reorder Button -->
+                                    --><!-- Reorder Button --><!--
                                     <Button
                                         Text="Opnieuw bestellen" 
                                         Margin="0,0,0,40"
@@ -57,7 +78,7 @@
                                         BackgroundColor="{StaticResource Primary}"
                                         Clicked="ReorderButton_Clicked"
                                         HorizontalOptions="Fill"
-                                        CommandParameter="{Binding Id}" />
+                                        CommandParameter="{Binding Id}" />-->
 
                                 </VerticalStackLayout>
                             </Frame>

@@ -22,16 +22,18 @@ namespace A2D2KrokanteHap
 
             SeedUsers();
 
-            //Logout();
 
             // Redirect to LoginPage or CreateOrderPage based on login status
             bool isLoggedIn = Preferences.Get("IsLoggedIn", false);
-            Console.WriteLine(isLoggedIn);
-            var userId = Preferences.Get("LoggedInUserId", -1); // Default to -1 if not found
-            Console.WriteLine(userId);
-            MainPage = isLoggedIn ? new TestPage() : new LoginPage();
+            if (isLoggedIn)
+            {
+                MainPage = new BottomNavigation();
+            }
+            else
+            {
+                MainPage = new LoginPage();
+            }
 
-            //MainPage = new CreateOrderPage();
         }
 
         private void SeedUsers()
@@ -64,8 +66,8 @@ namespace A2D2KrokanteHap
                 CustomerRepo?.SaveEntity(pieter);
             }
 
-            var updatedUsers = CustomerRepo?.GetEntities();
-            Console.WriteLine(updatedUsers);
+            //var updatedUsers = CustomerRepo?.GetEntities();
+            //Console.WriteLine(updatedUsers);
         }
 
         public static int? GetLoggedInUserId()

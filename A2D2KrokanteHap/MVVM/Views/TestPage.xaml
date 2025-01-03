@@ -4,8 +4,6 @@
              x:Class="A2D2KrokanteHap.MVVM.Views.TestPage"
              xmlns:local="clr-namespace:A2D2KrokanteHap.MVVM.ViewModels">
 
-
-
     <ContentPage.BindingContext>
         <local:TestPageViewModel />
     </ContentPage.BindingContext>
