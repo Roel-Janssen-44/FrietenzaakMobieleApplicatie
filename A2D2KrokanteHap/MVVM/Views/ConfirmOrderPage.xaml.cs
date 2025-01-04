@@ -7,7 +7,7 @@ public partial class ConfirmOrderPage : ContentPage
 	public ConfirmOrderPage(int Id)
 	{
         InitializeComponent();
-        BindingContext = new ConfirmOrderViewModel();
+        BindingContext = new ConfirmOrderViewModel(Id);
 
     }
 }

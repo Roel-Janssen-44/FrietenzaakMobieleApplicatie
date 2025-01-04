@@ -2,11 +2,83 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="A2D2KrokanteHap.MVVM.Views.ConfirmOrderPage"
+             xmlns:local="clr-namespace:A2D2KrokanteHap.MVVM.ViewModels"
              Title="ConfirmOrderPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Confirm order page!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
-</ContentPage>
+
+    <ScrollView>
+        <VerticalStackLayout>
+
+            <Label 
+                Text="Bevestig bestelling"
+                FontSize="24"
+                VerticalOptions="Center" 
+                FontFamily="Showcard"
+                HorizontalOptions="Center"
+                Grid.Row="1"
+                Margin="0,20,0,30"
+            />
+
+            <CollectionView ItemsSource="{Binding CurrentOrder.OrderLines}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="#fff">
+                            <VerticalStackLayout >
+                                <HorizontalStackLayout HorizontalOptions="Center">
+                                    <Label 
+                                        Text="{Binding Product.Name}"
+                                        HorizontalOptions="Center"
+                                        FontSize="Medium"
+                                        Margin="0,0,12,14"/>
+
+                                    <Label 
+                                        Text="{Binding Product.FormattedPrice}"
+                                        FontSize="24"
+                                        VerticalOptions="Center" 
+                                        FontFamily="Showcard"
+                                        HorizontalOptions="Center"
+                                        TextColor="{StaticResource Tertiary}"
+                                        Margin="0,0,0,20"
+                                    />
+                                </HorizontalStackLayout>
+
+                                <Frame
+                                    CornerRadius="8"
+                                    HorizontalOptions="Center"
+                                    IsClippedToBounds="True"
+                                    Margin="16,0,16,20"
+                                    Padding="0"
+                                    WidthRequest="150"
+                                >
+                                    <Image Aspect="AspectFill" Source="{Binding Product.Image}" />
+                                </Frame>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="{Binding TotalPrice, StringFormat='Totaal: € {0:F2}'}" 
+               x:Name="OrderTotal" 
+               HorizontalOptions="Center" 
+               FontFamily="Showcard" 
+               FontSize="Medium" />
+
+            <Button
+                x:Name="EditOrderButton"
+                Text="Bestelling wijzigen" 
+                Margin="16,24,16,10"
+                TextColor="{StaticResource White}"
+                BackgroundColor="{StaticResource Secondary}"
+                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ConfirmOrderViewModel}}, Path=EditOrderCommand}"
+                HorizontalOptions="Fill" />
+            <Button
+                x:Name="ConfirmOrderButton"
+                Text="Bevestigen" 
+                Margin="16,8,16,24"
+                TextColor="{StaticResource White}"
+                BackgroundColor="{StaticResource Primary}"
+                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ConfirmOrderViewModel}}, Path=ConfirmOrderCommand}"
+                HorizontalOptions="Fill" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage> 

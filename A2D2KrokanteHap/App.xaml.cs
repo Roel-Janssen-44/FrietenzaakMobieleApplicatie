@@ -28,6 +28,7 @@ namespace A2D2KrokanteHap
             if (isLoggedIn)
             {
                 MainPage = new BottomNavigation();
+                //MainPage = new ConfirmOrderPage(20);
             }
             else
             {

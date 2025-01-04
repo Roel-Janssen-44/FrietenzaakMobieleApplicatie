@@ -67,6 +67,19 @@ namespace A2D2KrokanteHap.Repositories
             }
             return null;
         }
+        
+        public T? GetEntityWithChildren(int id)
+        {
+            try
+            {
+                 return connection.GetWithChildren<T>(id, recursive: true);
+            }
+            catch (Exception ex)
+            {
+                statusMessage = $"Error: {ex.Message}";
+            }
+            return null;
+        }
 
         public int SaveEntity(T entity)
         {
@@ -120,7 +133,7 @@ namespace A2D2KrokanteHap.Repositories
         {
             try
             {
-                return connection.GetAllWithChildren<T>().ToList();
+                return connection.GetAllWithChildren<T>(recursive: true).ToList();
             }
             catch (Exception ex)
             {

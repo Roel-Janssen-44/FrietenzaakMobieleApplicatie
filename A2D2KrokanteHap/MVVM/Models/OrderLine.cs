@@ -16,11 +16,13 @@ namespace A2D2KrokanteHap.MVVM.Models
 
         private int _amount;
 
+
         [ForeignKey(typeof(Product))]
         public int ProductId { get; set; }
 
-        [OneToOne]
+        [OneToOne(CascadeOperations = CascadeOperation.All)]
         public Product? Product { get; set; }
+
 
         public int Amount
         {

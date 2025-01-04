@@ -16,23 +16,23 @@
             HeightRequest="120"
             Grid.Row="0"
         />
-        <!-- Title -->
-        <Label 
-            Text="Bestellingen"
-            FontSize="24"
-            VerticalOptions="Center" 
-            FontFamily="Showcard"
-            HorizontalOptions="Start"
-            Grid.Row="1"
-            Padding="16,0"
-            Margin="0,0,0,10"
-        />
 
         <ScrollView Grid.Row="2" >
             <VerticalStackLayout >
+                <Label 
+                    Text="Bestellingen"
+                    FontSize="24"
+                    VerticalOptions="Center" 
+                    FontFamily="Showcard"
+                    HorizontalOptions="Start"
+                    Grid.Row="1"
+                    Padding="16,0"
+                    Margin="0,0,0,10"
+                />
+
                 <CollectionView 
                         Grid.Row="2"
-                        ItemsSource="{Binding Orders}" 
+                        ItemsSource="{Binding CompletedOrders}" 
                     >
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
@@ -70,12 +70,23 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-            </VerticalStackLayout>
-        </ScrollView>
 
-        <!-- ScrollView -->
 
-                <CollectionView x:Name="OrdersBinding">
+
+                <Label 
+                    Text="Concept bestellingen"
+                    FontSize="24"
+                    VerticalOptions="Center" 
+                    FontFamily="Showcard"
+                    HorizontalOptions="Start"
+                    Grid.Row="1"
+                    Padding="16,0"
+                    Margin="0,0,0,10"
+                />
+                <CollectionView 
+                    Grid.Row="2"
+                    ItemsSource="{Binding DraftOrders}" 
+                >
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Frame BackgroundColor="#fff">
@@ -92,32 +103,30 @@
                                     </Grid>
                                     <Label Text="{Binding Id, StringFormat='Ordernr: {0}'}"/>
                                     <!-- View Order Button -->
-                                    <!--
                                     <Button
                                         Text="Bekijken" 
                                         HorizontalOptions="Fill"
                                         TextColor="{StaticResource White}"
                                         BackgroundColor="{StaticResource Secondary}"
-                                        Clicked="ViewOrderButton_Clicked"
                                         CommandParameter="{Binding Id}" />
-
-                                    -->
                                     <!-- Reorder Button -->
-                                    <!--
                                     <Button
                                         Text="Opnieuw bestellen" 
                                         Margin="0,0,0,40"
                                         TextColor="{StaticResource White}"
                                         BackgroundColor="{StaticResource Primary}"
-                                        Clicked="ReorderButton_Clicked"
                                         HorizontalOptions="Fill"
-                                        CommandParameter="{Binding Id}" />-->
+                                        CommandParameter="{Binding Id}" />
 
                                 </VerticalStackLayout>
                             </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+
+
+            </VerticalStackLayout>
+        </ScrollView>
 
     </Grid>
 </ContentPage>
