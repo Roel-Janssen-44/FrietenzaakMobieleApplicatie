@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="A2D2KrokanteHap.MVVM.Views.ViewOrderPage"
+             xmlns:local="clr-namespace:A2D2KrokanteHap.MVVM.ViewModels"
+             Title="ViewOrderPage">
+
+    <ScrollView>
+        <VerticalStackLayout>
+
+            <Label 
+                Text="Bevestig bestelling"
+                FontSize="24"
+                VerticalOptions="Center" 
+                FontFamily="Showcard"
+                HorizontalOptions="Center"
+                Grid.Row="1"
+                Margin="0,20,0,30"
+            />
+
+            <CollectionView ItemsSource="{Binding CurrentOrder.OrderLines}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="#fff">
+                            <VerticalStackLayout >
+                                <HorizontalStackLayout HorizontalOptions="Center">
+                                    <Label 
+                                        Text="{Binding Product.Name}"
+                                        HorizontalOptions="Center"
+                                        FontSize="Medium"
+                                        Margin="0,0,12,14"/>
+
+                                    <Label 
+                                        Text="{Binding Product.FormattedPrice}"
+                                        FontSize="24"
+                                        VerticalOptions="Center" 
+                                        FontFamily="Showcard"
+                                        HorizontalOptions="Center"
+                                        TextColor="{StaticResource Tertiary}"
+                                        Margin="0,0,0,20"
+                                    />
+                                </HorizontalStackLayout>
+
+                                <Frame
+                                    CornerRadius="8"
+                                    HorizontalOptions="Center"
+                                    IsClippedToBounds="True"
+                                    Margin="16,0,16,20"
+                                    Padding="0"
+                                    WidthRequest="150"
+                                >
+                                    <Image Aspect="AspectFill" Source="{Binding Product.Image}" />
+                                </Frame>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="{Binding TotalPrice, StringFormat='Totaal: € {0:F2}'}" 
+               HorizontalOptions="Center" 
+               FontFamily="Showcard" 
+               FontSize="Medium" />
+
+            <Button
+                Text="Terug" 
+                Margin="16,24,16,10"
+                TextColor="{StaticResource White}"
+                BackgroundColor="{StaticResource Tertiary}"
+                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ViewOrderViewModel}}, Path=GoBackCommand}"
+                HorizontalOptions="Fill" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage> 

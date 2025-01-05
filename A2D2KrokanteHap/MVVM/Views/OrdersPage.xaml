@@ -5,6 +5,7 @@
              x:Class="A2D2KrokanteHap.MVVM.Views.OrdersPage"
              xmlns:local="clr-namespace:A2D2KrokanteHap.MVVM.ViewModels">
 
+
     <ContentPage.BindingContext>
         <local:OrdersViewModel />
     </ContentPage.BindingContext>
@@ -55,6 +56,7 @@
                                         HorizontalOptions="Fill"
                                         TextColor="{StaticResource White}"
                                         BackgroundColor="{StaticResource Secondary}"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:OrdersViewModel}}, Path=ViewOrderCommand}"
                                         CommandParameter="{Binding Id}" />
                                     <!-- Reorder Button -->
                                     <Button
@@ -108,6 +110,7 @@
                                         HorizontalOptions="Fill"
                                         TextColor="{StaticResource White}"
                                         BackgroundColor="{StaticResource Secondary}"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:OrdersViewModel}}, Path=ViewOrderCommand}"
                                         CommandParameter="{Binding Id}" />
                                     <!-- Reorder Button -->
                                     <Button

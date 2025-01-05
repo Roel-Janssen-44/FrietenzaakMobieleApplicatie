@@ -1,4 +1,5 @@
 ﻿using A2D2KrokanteHap.MVVM.Models;
+using A2D2KrokanteHap.MVVM.Views;
 using PropertyChanged;
 using System.Windows.Input;
 
@@ -12,19 +13,28 @@ namespace A2D2KrokanteHap.MVVM.ViewModels
         public List<Order>? DraftOrders { get; set; }
 
         public ICommand? ViewOrderCommand { get; set; }
+        public ICommand? ReOrderCommand { get; set; }
 
         public OrdersViewModel()
         {
             Refresh();
 
-            ViewOrderCommand = new Command(async () =>
+            ViewOrderCommand = new Command<int>(async (orderId) =>
             {
-                // Command implementation
+                await Application.Current.MainPage.Navigation.PushAsync(new ViewOrderPage(orderId));
             });
+            
+            
+            ReOrderCommand = new Command<int>(async (orderId) =>
+            {
+                // Todo - navigate to page
+                //await Application.Current.MainPage.Navigation.PushAsync(new pagename(orderId));
+            });
+
         }
 
 
-        private void Refresh()
+        public void Refresh()
         {
             Orders = App.OrderRepo.GetEntitiesWithChildren();
             DraftOrders = new List<Order>();

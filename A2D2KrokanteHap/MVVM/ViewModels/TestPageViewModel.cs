@@ -40,7 +40,6 @@ namespace A2D2KrokanteHap.MVVM.ViewModels
 
             TestCommand = new Command(async () =>
             {
-                //FetchProductsFromAPI();
                 int? loggedInUserId = Preferences.Get("LoggedInUserId", -1);
                 Console.WriteLine($"Logged in User ID: {loggedInUserId}");
 

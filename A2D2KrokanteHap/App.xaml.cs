@@ -23,12 +23,12 @@ namespace A2D2KrokanteHap
             SeedUsers();
 
 
-            // Redirect to LoginPage or CreateOrderPage based on login status
             bool isLoggedIn = Preferences.Get("IsLoggedIn", false);
             if (isLoggedIn)
             {
                 MainPage = new BottomNavigation();
                 //MainPage = new ConfirmOrderPage(20);
+                //MainPage = new ViewOrderPage(20);
             }
             else
             {
@@ -73,10 +73,7 @@ namespace A2D2KrokanteHap
 
         public static int? GetLoggedInUserId()
         {
-            // Get the logged-in user's ID from Preferences
-            var userId = Preferences.Get("LoggedInUserId", -1); // Default to -1 if not found
-
-            // Return null if not found or if the user is not logged in
+            var userId = Preferences.Get("LoggedInUserId", -1);
             return userId == -1 ? null : userId;
         }
 
