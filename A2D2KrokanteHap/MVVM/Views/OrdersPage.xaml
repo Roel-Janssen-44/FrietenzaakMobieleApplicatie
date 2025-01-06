@@ -65,6 +65,7 @@
                                         TextColor="{StaticResource White}"
                                         BackgroundColor="{StaticResource Primary}"
                                         HorizontalOptions="Fill"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:OrdersViewModel}}, Path=ReOrderCommand}"
                                         CommandParameter="{Binding Id}" />
 
                                 </VerticalStackLayout>

@@ -8,6 +8,10 @@ public partial class ConfirmOrderPage : ContentPage
 	{
         InitializeComponent();
         BindingContext = new ConfirmOrderViewModel(Id);
-
+    }
+    public ConfirmOrderPage(int Id, bool CreateNewOrder)
+	{
+        InitializeComponent();
+        BindingContext = new ConfirmOrderViewModel(Id, CreateNewOrder);
     }
 }

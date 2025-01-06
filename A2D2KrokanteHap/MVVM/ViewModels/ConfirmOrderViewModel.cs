@@ -1,5 +1,6 @@
 ﻿
 using A2D2KrokanteHap.MVVM.Models;
+using A2D2KrokanteHap.MVVM.Views;
 using PropertyChanged;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -22,10 +23,6 @@ namespace A2D2KrokanteHap.MVVM.ViewModels
 
             CalculateTotalPrice();
 
-            //if (CurrentOrder.OrderLines != null)
-            //{
-            //    CurrentOrder.OrderLines.CollectionChanged += (s, e) => CalculateTotalPrice();
-            //}
 
             EditOrderCommand = new Command(async () =>
             {
@@ -34,9 +31,34 @@ namespace A2D2KrokanteHap.MVVM.ViewModels
 
             ConfirmOrderCommand = new Command(async () =>
             {
-                // Todo - navigate to order completion page
                 CurrentOrder.Completed = true;
                 App.OrderRepo.SaveEntityWithChildren(CurrentOrder, recursive: true);
+
+                await Application.Current.MainPage.Navigation.PushAsync(new OrderPlacedPage(CurrentOrder.Id));
+
+            });
+        }
+        public ConfirmOrderViewModel(int Id, bool CreateNewOrder)
+        {
+            CurrentOrder = App.OrderRepo.GetEntityWithChildren(Id);
+
+            CalculateTotalPrice();
+
+
+            EditOrderCommand = new Command(async () =>
+            {
+                // Todo - navigate back to orderCreation
+            });
+
+            ConfirmOrderCommand = new Command(async () =>
+            {
+                CurrentOrder.Completed = true;
+                CurrentOrder.Id = 0;
+
+                int NewOrderId = App.OrderRepo.SaveEntityWithChildren(CurrentOrder, recursive: true);
+
+                await Application.Current.MainPage.Navigation.PushAsync(new OrderPlacedPage(NewOrderId));
+
             });
         }
 

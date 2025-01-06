@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="A2D2KrokanteHap.MVVM.Views.ConfirmOrderPage"
              xmlns:local="clr-namespace:A2D2KrokanteHap.MVVM.ViewModels"
-             Title="ConfirmOrderPage">
+             Title="">
 
     <ScrollView>
         <VerticalStackLayout>

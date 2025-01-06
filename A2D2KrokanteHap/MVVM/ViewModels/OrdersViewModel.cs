@@ -27,8 +27,7 @@ namespace A2D2KrokanteHap.MVVM.ViewModels
             
             ReOrderCommand = new Command<int>(async (orderId) =>
             {
-                // Todo - navigate to page
-                //await Application.Current.MainPage.Navigation.PushAsync(new pagename(orderId));
+                await Application.Current.MainPage.Navigation.PushAsync(new ConfirmOrderPage(orderId,true));
             });
 
         }
