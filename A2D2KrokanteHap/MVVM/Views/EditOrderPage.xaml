@@ -2,11 +2,111 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="A2D2KrokanteHap.MVVM.Views.EditOrderPage"
-             Title="EditOrderPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:local="clr-namespace:A2D2KrokanteHap.MVVM.ViewModels">
+    <ScrollView>
+        <VerticalStackLayout>
+
+            <Label 
+                Text="Bestelling bewerken"
+                FontSize="24"
+                VerticalOptions="Center" 
+                FontFamily="Showcard"
+                HorizontalOptions="Center"
+                Grid.Row="1"
+                Margin="0,20,0,30"
+            />
+
+            <CollectionView ItemsSource="{Binding CurrentOrder.OrderLines}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="#fff">
+                            <VerticalStackLayout >
+                                <HorizontalStackLayout HorizontalOptions="Center">
+                                    <Label 
+                                        Text="{Binding Product.Name}"
+                                        HorizontalOptions="Center"
+                                        FontSize="Medium"
+                                        Margin="0,0,12,14"/>
+
+                                    <Label 
+                                        Text="{Binding Product.FormattedPrice}"
+                                        FontSize="24"
+                                        VerticalOptions="Center" 
+                                        FontFamily="Showcard"
+                                        HorizontalOptions="Center"
+                                        TextColor="{StaticResource Tertiary}"
+                                        Margin="0,0,0,20"
+                                    />
+                                </HorizontalStackLayout>
+
+                                <FlexLayout AlignItems="Center" JustifyContent="Center">
+                                    <Button
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditOrderViewModel}}, Path=DecreaseProductAmountCommand}"
+                                        CommandParameter="{Binding Id}"
+                                        BackgroundColor="{StaticResource Secondary}" 
+                                        FontSize="Large" 
+                                        Padding="0,0,0,4" 
+                                        Text="-" />
+                                    <Label 
+                                        Text="{Binding Amount, StringFormat='{0} X'}"
+                                        HorizontalOptions="Center"
+                                        FontSize="Medium"
+                                        Margin="8,0"
+                                    />
+                                    <Button
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditOrderViewModel}}, Path=IncreaseProductAmountCommand}"
+                                        CommandParameter="{Binding Id}"
+                                        BackgroundColor="{StaticResource Secondary}" 
+                                        FontSize="Large" 
+                                        Padding="0,0,0,4" 
+                                        Text="+" />
+                                </FlexLayout>
+                                <Frame
+                                    CornerRadius="8"
+                                    HorizontalOptions="Center"
+                                    IsClippedToBounds="True"
+                                    Margin="16,32,16,0"
+                                    Padding="0"
+                                    WidthRequest="150"
+                                >
+                                    <Image Aspect="AspectFill" Source="{Binding Product.Image}" />
+                                </Frame>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="{Binding TotalPrice, StringFormat='Totaal: € {0:F2}'}" 
+               x:Name="OrderTotal" 
+               HorizontalOptions="Center" 
+               FontFamily="Showcard" 
+               FontSize="Medium" />
+
+            <Button
+                Text="Product toevoegen" 
+                Margin="16,24,16,10"
+                TextColor="{StaticResource White}"
+                BackgroundColor="{StaticResource Secondary}"
+                Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditOrderViewModel}}, Path=AddProductCommand}"
+                HorizontalOptions="Fill" />
+            <Button
+                Text="Veranderingen annuleren" 
+                Margin="16,24,16,10"
+                TextColor="{StaticResource White}"
+                BackgroundColor="{StaticResource Tertiary}"
+                Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditOrderViewModel}}, Path=CancelEditCommand}"
+                HorizontalOptions="Fill" />
+            <Button
+                Text="Bestelling updaten" 
+                Margin="16,8,16,24"
+                TextColor="{StaticResource White}"
+                BackgroundColor="{StaticResource Primary}"
+                Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditOrderViewModel}}, Path=UpdateOrderCommand}"
+                HorizontalOptions="Fill" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+   
 </ContentPage>
+

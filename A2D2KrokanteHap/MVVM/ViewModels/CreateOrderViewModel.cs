@@ -49,9 +49,10 @@ namespace A2D2KrokanteHap.MVVM.ViewModels
                 if (orderLine != null)
                 {
                     orderLine.Amount++;
+                    App.OrderLineRepo.SaveEntity(orderLine);
                     CalculateTotal();
                 }
-                App.OrderRepo.SaveEntityWithChildren(CurrentOrder, true);
+
             });
 
             DecreaseProductAmountCommand = new Command<int>((orderLineId) =>
@@ -63,10 +64,17 @@ namespace A2D2KrokanteHap.MVVM.ViewModels
                     if (orderLine.Amount <= 0)
                     {
                         CurrentOrder.OrderLines.Remove(orderLine);
+                        App.OrderRepo.SaveEntityWithChildren(CurrentOrder);
+                        App.OrderLineRepo.DeleteEntity(orderLine);
+
+                    } else
+                    {
+                        App.OrderLineRepo.SaveEntity(orderLine);
+
                     }
                     CalculateTotal();
                 }
-                App.OrderRepo.SaveEntityWithChildren(CurrentOrder, true);
+
             });
 
             AddProductCommand = new Command(async () =>
