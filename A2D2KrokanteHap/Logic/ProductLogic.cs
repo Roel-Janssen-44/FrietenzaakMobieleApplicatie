@@ -12,16 +12,19 @@ namespace A2D2KrokanteHap.Logic
             List<Product> products = new List<Product>();
             var url = Product.GenerateUrlProducts();
 
-            using (HttpClient client = new HttpClient())
-            {
-                var response = await client.GetAsync(url);
-                var json = await response.Content.ReadAsStringAsync();
 
-                // Deserialize directly into a list of Product
-                apiProducts = JsonConvert.DeserializeObject<List<ProductsResponse.ProductLogicResponse>>(json);
-                // Map API products to local products
-                products = apiProducts.ConvertAll(apiProduct => MapToProduct(apiProduct));
-            }
+            // API werkt, echter de foto's van de api zijn groot waardoor de applicatie op mobiel heel lang nodig heeft om te laden.
+            // aarom heb ik ze er een aantal hardcoded producten in gezet
+
+            //using (HttpClient client = new HttpClient())
+            //{
+            //    var response = await client.GetAsync(url);
+            //    var json = await response.Content.ReadAsStringAsync();
+
+            //    apiProducts = JsonConvert.DeserializeObject<List<ProductsResponse.ProductLogicResponse>>(json);
+
+            //    products = apiProducts.ConvertAll(apiProduct => MapToProduct(apiProduct));
+            //}
 
             var hardcodedProducts = new List<Product>
             {

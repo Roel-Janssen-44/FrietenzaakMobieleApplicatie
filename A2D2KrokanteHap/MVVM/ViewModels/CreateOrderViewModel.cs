@@ -19,49 +19,7 @@ namespace A2D2KrokanteHap.MVVM.ViewModels
             DateTime = DateTime.Now,
             EstimatedCompletionTime = DateTime.Now.AddMinutes(20),
             Completed = false,
-            OrderLines = new ObservableCollection<OrderLine>
-            {
-                //new OrderLine
-                //{
-                //    Id = 0,
-                //    Amount = 2,
-                //    Product = new Product
-                //    {
-                //        Id = 0,
-                //        Name = "Kleine friet",
-                //        Category = "Friet",
-                //        Price = 3.00,
-                //        Image = "friet.jpg"
-                //    }
-                //},
-                //new OrderLine
-                //{
-                //    Id = 0,
-                //    Amount = 1,
-                //    ProductId = 2,
-                //    Product = new Product
-                //    {
-                //        Id = 0,
-                //        Name = "Grote friet",
-                //        Category = "Friet",
-                //        Price = 3.50,
-                //        Image = "friet.jpg"
-                //    }
-                //},
-                //new OrderLine
-                //{
-                //    Id = 0,
-                //    Amount = 1,
-                //    Product = new Product
-                //    {
-                //        Id = 0,
-                //        Name = "Frikandel",
-                //        Category = "Snacks",
-                //        Price = 2.75,
-                //        Image = "snacks.jpg"
-                //    }
-                //}
-            }
+            OrderLines = new ObservableCollection<OrderLine>{}
         };
 
 

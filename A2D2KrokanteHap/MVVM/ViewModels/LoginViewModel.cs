@@ -53,25 +53,23 @@ namespace A2D2KrokanteHap.MVVM.ViewModels
         {
             if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
             {
-                Message = "Please enter username and password.";
+                Message = "Vul de juiste gebruikersnaam en wachtwoord in.";
                 return;
             }
 
-            // Use repository to check credentials
             var user = App.CustomerRepo!.GetByCondition(c => c.UserName == Username && c.Password == Password);
+            var users = App.CustomerRepo!.GetEntities();
 
             if (user != null)
             {
-                // Save login state, username, and user ID
                 Preferences.Set("IsLoggedIn", true);
                 Preferences.Set("LoggedInUser", user.UserName);
                 Preferences.Set("LoggedInUserId", user.Id);
-                //await Shell.Current.GoToAsync("//CreateOrderPage");
                 Application.Current.MainPage = new BottomNavigation();
             }
             else
             {
-                Message = "Invalid username or password.";
+                Message = "Ongeldige gebruikersnaam of wachtwoord.";
             }
         }
 

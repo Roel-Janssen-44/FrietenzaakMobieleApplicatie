@@ -41,6 +41,7 @@ namespace A2D2KrokanteHap
         {
             var users = CustomerRepo?.GetEntities();
 
+
             //if (users != null && users.Any())
             //{
             //    foreach (var user in users)
@@ -49,7 +50,7 @@ namespace A2D2KrokanteHap
             //    }
             //}
 
-            if (users == null)
+            if (users.Count == 0)
             {
                 var sjarel = new Customer
                 {

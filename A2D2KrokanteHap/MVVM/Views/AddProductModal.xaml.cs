@@ -13,6 +13,7 @@ namespace A2D2KrokanteHap.MVVM.Views
         public AddProductModal(Action<Product> onProductSelectedCallback)
         {
             InitializeComponent();
+
             BindingContext = this;
             OnProductSelectedCallback = onProductSelectedCallback;
 
@@ -30,7 +31,6 @@ namespace A2D2KrokanteHap.MVVM.Views
             try
             {
                 var productsFromAPI = await ProductLogic.GetProducts();
-                Console.WriteLine(productsFromAPI);
                 return productsFromAPI ?? new List<Product>();
             }
             catch (Exception ex)
