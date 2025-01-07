@@ -15,13 +15,13 @@ namespace A2D2KrokanteHap
         {
             InitializeComponent();
 
+
             ProductRepo = productRepo;
             OrderRepo = orderRepo;
             CustomerRepo = customerRepo;
             OrderLineRepo = orderLineRepo;
 
             SeedUsers();
-
 
             bool isLoggedIn = Preferences.Get("IsLoggedIn", false);
             if (isLoggedIn)
@@ -40,7 +40,6 @@ namespace A2D2KrokanteHap
         private void SeedUsers()
         {
             var users = CustomerRepo?.GetEntities();
-
 
             //if (users != null && users.Any())
             //{
@@ -84,6 +83,15 @@ namespace A2D2KrokanteHap
             Preferences.Set("LoggedInUser", null);
             Preferences.Set("LoggedInUserId", -1);
         }
+
+        public static void ClearDatabase()
+        {
+            ProductRepo?.DeleteAllEntities();  
+            OrderRepo?.DeleteAllEntities();
+            CustomerRepo?.DeleteAllEntities();
+            OrderLineRepo?.DeleteAllEntities();
+        }
+
 
 
     }

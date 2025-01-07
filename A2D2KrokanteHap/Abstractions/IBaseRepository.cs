@@ -15,5 +15,6 @@ namespace A2D2KrokanteHap.Abstractions
 
         void DeleteEntity(T entity);
         void DeleteEntityWithChildren(T entity);
+        void DeleteAllEntities();
     }
 }

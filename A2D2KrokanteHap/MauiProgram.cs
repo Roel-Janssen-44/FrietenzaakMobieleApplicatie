@@ -1,5 +1,6 @@
 ﻿using A2D2KrokanteHap.MVVM.Models;
 using A2D2KrokanteHap.Repositories;
+using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 
 namespace A2D2KrokanteHap
@@ -11,6 +12,7 @@ namespace A2D2KrokanteHap
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

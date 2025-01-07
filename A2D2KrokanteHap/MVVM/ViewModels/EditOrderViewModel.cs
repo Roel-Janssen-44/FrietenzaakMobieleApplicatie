@@ -44,38 +44,67 @@ namespace A2D2KrokanteHap.MVVM.ViewModels
                 await Application.Current.MainPage.Navigation.PushAsync(new ConfirmOrderPage(OrderId, true));
             });
 
+
             IncreaseProductAmountCommand = new Command<int>((orderLineId) =>
             {
-                var orderLine = CurrentOrder?.OrderLines.FirstOrDefault(ol => ol.Id == orderLineId);
-
+                var orderLine = App.OrderLineRepo.GetEntityWithChildren(orderLineId);
                 if (orderLine != null)
                 {
                     orderLine.Amount++;
+
                     App.OrderLineRepo.SaveEntity(orderLine);
-                    CalculateTotalPrice();
                 }
-                App.OrderLineRepo.SaveEntity(orderLine);
+
+                var orderLineFromCurrentOrder = CurrentOrder?.OrderLines.FirstOrDefault(ol => ol.Id == orderLineId);
+
+                if (orderLineFromCurrentOrder != null)
+                {
+                    orderLineFromCurrentOrder.Amount++;
+                }
+
+                CalculateTotalPrice();
             });
+
 
             DecreaseProductAmountCommand = new Command<int>((orderLineId) =>
             {
-                var orderLine = CurrentOrder?.OrderLines.FirstOrDefault(ol => ol.Id == orderLineId);
-
-                orderLine.Amount--;
-                if (orderLine.Amount <= 0)
+                // Fetch the order line from the database
+                var orderLine = App.OrderLineRepo.GetEntityWithChildren(orderLineId);
+                if (orderLine != null)
                 {
-                    CurrentOrder.OrderLines.Remove(orderLine);
-                    App.OrderRepo.SaveEntityWithChildren(CurrentOrder);
-                    App.OrderLineRepo.DeleteEntity(orderLine);
+                    // Decrease the amount
+                    orderLine.Amount--;
 
-                }
-                else
-                {
-                    App.OrderLineRepo.SaveEntity(orderLine);
+                    if (orderLine.Amount <= 0)
+                    {
+                        // Remove from both database and current order if the amount is 0 or less
+                        App.OrderLineRepo.DeleteEntity(orderLine);
+                        var orderLineFromCurrentOrder = CurrentOrder?.OrderLines.FirstOrDefault(ol => ol.Id == orderLineId);
 
+                        if (orderLineFromCurrentOrder != null)
+                        {
+                            CurrentOrder.OrderLines.Remove(orderLineFromCurrentOrder);
+                        }
+                    }
+                    else
+                    {
+                        // Update the database with the new amount
+                        App.OrderLineRepo.SaveEntity(orderLine);
+
+                        // Update the in-memory order line
+                        var orderLineFromCurrentOrder = CurrentOrder?.OrderLines.FirstOrDefault(ol => ol.Id == orderLineId);
+
+                        if (orderLineFromCurrentOrder != null)
+                        {
+                            orderLineFromCurrentOrder.Amount--;
+                        }
+                    }
+
+                    // Recalculate the total price
+                    CalculateTotalPrice();
                 }
-                CalculateTotalPrice();
             });
+
 
             AddProductCommand = new Command(async () =>
             {

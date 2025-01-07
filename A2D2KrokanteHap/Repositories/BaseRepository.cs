@@ -153,5 +153,19 @@ namespace A2D2KrokanteHap.Repositories
                 statusMessage = $"Error: {ex.Message}";
             }
         }
+
+        public void DeleteAllEntities()
+        {
+            try
+            {
+                connection.DeleteAll<T>(); // Deletes all rows in the table
+                statusMessage = "All entities deleted successfully.";
+            }
+            catch (Exception ex)
+            {
+                statusMessage = $"Error: {ex.Message}";
+            }
+        }
+
     }
 }

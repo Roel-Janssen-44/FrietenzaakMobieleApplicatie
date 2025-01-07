@@ -31,6 +31,17 @@
                                         Margin="0,0,12,14"/>
 
                                     <Label 
+                                        Text="{Binding Amount}"
+                                        HorizontalOptions="Center"
+                                        FontSize="Medium"
+                                        Margin="0,0,12,14"/>
+                                    <Label 
+                                        Text="X"
+                                        HorizontalOptions="Center"
+                                        FontSize="Medium"
+                                        Margin="0,0,12,14"/>
+
+                                    <Label 
                                         Text="{Binding Product.FormattedPrice}"
                                         FontSize="24"
                                         VerticalOptions="Center" 

@@ -8,5 +8,7 @@ public partial class OrderPlacedPage : ContentPage
 	{
         InitializeComponent();
         BindingContext = new OrderPlacedViewModel(Id);
+        NavigationPage.SetHasBackButton(this, false);
+
     }
 } 

@@ -22,6 +22,7 @@ namespace A2D2KrokanteHap.MVVM.ViewModels
             NavigateBackCommand = new Command(async () =>
             {
                 //await Application.Current.MainPage.Navigation.PushAsync(new OrdersPage());
+                await Application.Current.MainPage.Navigation.PopToRootAsync();
             });
         }
 

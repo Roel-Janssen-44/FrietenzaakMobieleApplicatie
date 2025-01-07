@@ -3,13 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="A2D2KrokanteHap.MVVM.Views.ViewOrderPage"
              xmlns:local="clr-namespace:A2D2KrokanteHap.MVVM.ViewModels"
-             Title="ViewOrderPage">
+             Title="">
 
     <ScrollView>
         <VerticalStackLayout>
 
             <Label 
-                Text="Bevestig bestelling"
+                Text="Bestelling bekijken"
                 FontSize="24"
                 VerticalOptions="Center" 
                 FontFamily="Showcard"
