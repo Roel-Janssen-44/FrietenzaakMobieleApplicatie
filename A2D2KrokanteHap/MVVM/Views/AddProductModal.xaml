@@ -38,7 +38,6 @@
                                     <Image Aspect="AspectFit" Source="{Binding Image}" />
                                 </Frame>
 
-
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

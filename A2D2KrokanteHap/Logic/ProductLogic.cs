@@ -16,15 +16,15 @@ namespace A2D2KrokanteHap.Logic
             // API werkt, echter de foto's van de api zijn groot waardoor de applicatie op mobiel heel lang nodig heeft om te laden.
             // aarom heb ik ze er een aantal hardcoded producten in gezet
 
-            //using (HttpClient client = new HttpClient())
-            //{
-            //    var response = await client.GetAsync(url);
-            //    var json = await response.Content.ReadAsStringAsync();
+            using (HttpClient client = new HttpClient())
+            {
+                var response = await client.GetAsync(url);
+                var json = await response.Content.ReadAsStringAsync();
 
-            //    apiProducts = JsonConvert.DeserializeObject<List<ProductsResponse.ProductLogicResponse>>(json);
+                apiProducts = JsonConvert.DeserializeObject<List<ProductsResponse.ProductLogicResponse>>(json);
 
-            //    products = apiProducts.ConvertAll(apiProduct => MapToProduct(apiProduct));
-            //}
+                products = apiProducts.ConvertAll(apiProduct => MapToProduct(apiProduct));
+            }
 
             var hardcodedProducts = new List<Product>
             {
@@ -45,7 +45,10 @@ namespace A2D2KrokanteHap.Logic
                 Name = apiProduct.title,
                 Category = apiProduct.category,
                 Price = apiProduct.price,
-                Image = apiProduct.image
+                //Image = apiProduct.image
+
+                // Gezien de foto's van de api erg groot zijn en het niet makkelijk omgezet kan worden, zonder veel rekenkracht te gebruiken. Worden de foto's door een placeholder vervangen.
+                Image = "placeholder.png"
             };
         }
 

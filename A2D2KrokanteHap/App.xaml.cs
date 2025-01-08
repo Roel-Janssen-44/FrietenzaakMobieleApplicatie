@@ -26,7 +26,7 @@ namespace A2D2KrokanteHap
             bool isLoggedIn = Preferences.Get("IsLoggedIn", false);
             if (isLoggedIn)
             {
-                MainPage = new BottomNavigation();
+                MainPage = new MapsPage();
                 //MainPage = new ConfirmOrderPage(20);
                 //MainPage = new ViewOrderPage(20);
             }
