@@ -15,18 +15,18 @@ namespace A2D2KrokanteHap
         {
             InitializeComponent();
 
-
             ProductRepo = productRepo;
             OrderRepo = orderRepo;
             CustomerRepo = customerRepo;
             OrderLineRepo = orderLineRepo;
+            //ClearDatabase();
 
             SeedUsers();
 
             bool isLoggedIn = Preferences.Get("IsLoggedIn", false);
             if (isLoggedIn)
             {
-                MainPage = new MapsPage();
+                MainPage = new BottomNavigation();
                 //MainPage = new ConfirmOrderPage(20);
                 //MainPage = new ViewOrderPage(20);
             }

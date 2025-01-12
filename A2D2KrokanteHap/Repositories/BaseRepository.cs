@@ -108,12 +108,26 @@ namespace A2D2KrokanteHap.Repositories
             return entity.Id;
         }
 
-        // **New Method: Get entities by condition**
         public T? GetByCondition(Expression<Func<T, bool>> predicate)
         {
             try
             {
                 return connection.Table<T>().FirstOrDefault(predicate);
+            }
+            catch (Exception ex)
+            {
+                statusMessage = $"Error: {ex.Message}";
+            }
+            return null;
+        }
+        public List<T>? GetEntitiesByCondition(Expression<Func<T, bool>> predicate)
+        {
+            try
+            {
+                //return connection.GetAllWithChildren<T>(recursive: true).ToList();
+                return connection.GetAllWithChildren<T>(recursive: true)
+                 .Where(predicate.Compile())
+                 .ToList();
             }
             catch (Exception ex)
             {

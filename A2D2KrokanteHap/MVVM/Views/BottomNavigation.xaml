@@ -17,6 +17,9 @@
         <Tab Icon="map.png">
             <ShellContent ContentTemplate="{DataTemplate local:MapsPage}" />
         </Tab>
+        <Tab Icon="signout.png">
+            <ShellContent ContentTemplate="{DataTemplate local:SignOut}" />
+        </Tab>
     </TabBar>
 
 </Shell>

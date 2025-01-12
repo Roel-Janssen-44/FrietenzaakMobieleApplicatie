@@ -40,7 +40,7 @@ namespace A2D2KrokanteHap.MVVM.ViewModels
 
             UpdateOrderCommand = new Command(async () =>
             {
-                int OrderId = App.OrderRepo.SaveEntityWithChildren(CurrentOrder, recursive: true);
+                int OrderId = App.OrderRepo.SaveEntityWithChildren(CurrentOrder);
                 await Application.Current.MainPage.Navigation.PushAsync(new ConfirmOrderPage(OrderId, true));
             });
 
@@ -132,7 +132,7 @@ namespace A2D2KrokanteHap.MVVM.ViewModels
             newOrderLine.Id = OrderLineId;
             CurrentOrder.OrderLines.Add(newOrderLine);
 
-            App.OrderRepo.SaveEntityWithChildren(CurrentOrder, true);
+            App.OrderRepo.SaveEntityWithChildren(CurrentOrder);
             CalculateTotalPrice();
         }
 

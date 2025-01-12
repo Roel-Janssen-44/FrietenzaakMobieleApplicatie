@@ -35,7 +35,16 @@ namespace A2D2KrokanteHap.MVVM.ViewModels
 
         public void Refresh()
         {
-            Orders = App.OrderRepo.GetEntitiesWithChildren();
+
+            var customerId = Preferences.Get("LoggedInUserId", -1);
+            if (customerId == -1)
+            {
+                return;
+            }
+            var CustomerId = Preferences.Get("LoggedInUserId", -1);
+            Console.WriteLine("Customer ID: " + CustomerId);
+            var AllOrders = App.OrderRepo.GetEntitiesWithChildren();
+            Orders = App.OrderRepo.GetEntitiesByCondition(order => order.CustomerId == customerId);
             DraftOrders = new List<Order>();
             CompletedOrders = new List<Order>();
 

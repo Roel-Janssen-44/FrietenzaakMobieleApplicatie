@@ -117,8 +117,8 @@ namespace A2D2KrokanteHap.MVVM.ViewModels
 
             CreateOrderCommand = new Command(async () =>
             {
-                var createdOrderId = App.OrderRepo.SaveEntityWithChildren(CurrentOrder, recursive: true);
-                await Application.Current.MainPage.Navigation.PushAsync(new ConfirmOrderPage(createdOrderId));
+                //var createdOrderId = App.OrderRepo.SaveEntityWithChildren(CurrentOrder);
+                await Application.Current.MainPage.Navigation.PushAsync(new ConfirmOrderPage(CurrentOrder.Id));
             });
 
             CalculateTotal();

@@ -27,14 +27,14 @@ namespace A2D2KrokanteHap.MVVM.ViewModels
             EditOrderCommand = new Command(async () =>
             {
                 CurrentOrder.Completed = true;
-                App.OrderRepo.SaveEntityWithChildren(CurrentOrder, recursive: true);
+                App.OrderRepo.SaveEntityWithChildren(CurrentOrder);
                 await Application.Current.MainPage.Navigation.PushAsync(new EditOrderPage(CurrentOrder.Id));
             });
 
             ConfirmOrderCommand = new Command(async () =>
             {
                 CurrentOrder.Completed = true;
-                App.OrderRepo.SaveEntityWithChildren(CurrentOrder, recursive: true);
+                App.OrderRepo.SaveEntity(CurrentOrder);
                 await Application.Current.MainPage.Navigation.PushAsync(new OrderPlacedPage(CurrentOrder.Id));
 
             });
@@ -49,17 +49,17 @@ namespace A2D2KrokanteHap.MVVM.ViewModels
             EditOrderCommand = new Command(async () =>
             {
                 CurrentOrder.Id = 0;
-                int NewOrderId = App.OrderRepo.SaveEntityWithChildren(CurrentOrder, recursive: true);
+                int NewOrderId = App.OrderRepo.SaveEntityWithChildren(CurrentOrder);
                 await Application.Current.MainPage.Navigation.PushAsync(new EditOrderPage(NewOrderId));
             });
 
             ConfirmOrderCommand = new Command(async () =>
             {
                 CurrentOrder.Completed = true;
-                CurrentOrder.Id = 0;
+                //CurrentOrder.Id = 0;
 
-                int NewOrderId = App.OrderRepo.SaveEntityWithChildren(CurrentOrder, recursive: true);
-                await Application.Current.MainPage.Navigation.PushAsync(new OrderPlacedPage(NewOrderId));
+                App.OrderRepo.SaveEntityWithChildren(CurrentOrder);
+                await Application.Current.MainPage.Navigation.PushAsync(new OrderPlacedPage(CurrentOrder.Id));
 
             });
         }
